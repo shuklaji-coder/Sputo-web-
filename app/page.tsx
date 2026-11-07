@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import HeroBooking from '@/components/HeroBooking';
 import LiveMarquee from '@/components/LiveMarquee';
-import StatsCounter from '@/components/StatsCounter';
 import FleetShowcase from '@/components/FleetShowcase';
 import RoyalPerks from '@/components/RoyalPerks';
 import EarningsCalculator from '@/components/EarningsCalculator';
@@ -56,9 +55,6 @@ export default function HomePage() {
 
       {/* Infinite Live Ticker Marquee (Rapido Yellow Strip) */}
       <LiveMarquee />
-
-      {/* Real-time Network Telemetry Stats Counter */}
-      <StatsCounter />
 
       {/* Fleet Showcase: Bike Taxi, Auto, Royale Cab & Parcel */}
       <FleetShowcase />

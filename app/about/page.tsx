@@ -528,7 +528,7 @@ export default function AboutPage() {
                       Rigorous Safety & Vehicle Audits
                     </p>
                     <p className="text-xs text-stone-500">
-                      Clean vehicles, sanitized helmets, and mandatory verification for all 50,000+ drivers.
+                      Clean vehicles, sanitized helmets, and mandatory KYC verification for all Captains.
                     </p>
                   </div>
                 </div>
