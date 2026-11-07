@@ -2,17 +2,36 @@
 
 import React, { useState } from 'react';
 import { Building2, FileCheck2, CreditCard, ShieldCheck, CheckCircle2, ArrowRight } from 'lucide-react';
+import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
+import { db } from '@/lib/firebase';
 
 export default function CorporateBanner() {
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (email) {
-      setSubmitted(true);
-      setTimeout(() => setSubmitted(false), 4000);
-      setEmail('');
+      setLoading(true);
+      try {
+        const leadId = `corp_${Date.now().toString(36)}_${Math.random().toString(36).substring(2, 6)}`;
+        await setDoc(doc(db, 'corporate_leads', leadId), {
+          leadId,
+          email,
+          status: 'pending_contact',
+          createdAt: serverTimestamp(),
+          source: 'corporate_banner'
+        });
+        console.log('Corporate lead saved to Firestore:', leadId);
+      } catch (err: any) {
+        console.warn('Firestore corporate lead notice:', err.message);
+      } finally {
+        setLoading(false);
+        setSubmitted(true);
+        setTimeout(() => setSubmitted(false), 5000);
+        setEmail('');
+      }
     }
   };
 

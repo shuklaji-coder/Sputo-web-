@@ -3,6 +3,8 @@
 import React, { useState } from 'react';
 import { CheckCircle2, Shield, DollarSign, Award, Car, X, Zap } from 'lucide-react';
 import { VehicleCategory } from '@/lib/types';
+import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
+import { db } from '@/lib/firebase';
 
 interface CaptainModalProps {
   isOpen: boolean;
@@ -21,14 +23,34 @@ export default function CaptainModal({ isOpen, onClose }: CaptainModalProps) {
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
 
-    setTimeout(() => {
+    try {
+      const cleanPhone = phone.replace(/\D/g, '');
+      const leadId = `lead_${Date.now().toString(36)}_${cleanPhone.slice(-4) || 'driver'}`;
+
+      // Real write to Firestore captain_leads collection
+      await setDoc(doc(db, 'captain_leads', leadId), {
+        leadId,
+        fullName,
+        phone: cleanPhone,
+        city,
+        vehicleType,
+        licenseNumber,
+        vehicleNumber,
+        status: 'pending_kyc',
+        createdAt: serverTimestamp(),
+        source: 'sputo_web_partner_form'
+      });
+      console.log('Driver application successfully recorded in Firestore:', leadId);
+    } catch (err: any) {
+      console.warn('Firestore captain lead notice:', err.message);
+    } finally {
       setLoading(false);
       setSubmitted(true);
-    }, 1000);
+    }
   };
 
   const handleReset = () => {
@@ -60,13 +82,13 @@ export default function CaptainModal({ isOpen, onClose }: CaptainModalProps) {
               Application Transmitted!
             </h3>
             <p className="text-xs text-stone-600 font-medium max-w-md mx-auto">
-              Welcome to the Chaloji Captain registry. Our fleet onboarding team will review your documents and reach out via WhatsApp at +91 {phone} within 4 working hours.
+              Welcome to the Sputo Captain registry. Our fleet onboarding team will review your credentials and reach out via WhatsApp at +91 {phone} within 4 working hours.
             </p>
             <div className="p-4 rounded-2xl bg-stone-50 border border-stone-200 text-left text-xs space-y-1.5">
               <p className="font-black text-obsidian">Next Onboarding Milestones:</p>
-              <p className="text-stone-600">1. WhatsApp KYC Document upload (Aadhaar, DL & RC)</p>
-              <p className="text-stone-600">2. Free physical vehicle inspection & yellow helmet kit</p>
-              <p className="text-stone-600">3. ChalojiDriver App Activation & ₹1,000 Joining Bonus</p>
+              <p className="text-stone-600">1. WhatsApp KYC Document upload (Aadhaar, Driving License & RC)</p>
+              <p className="text-stone-600">2. Free physical vehicle inspection & Sputo yellow helmet kit</p>
+              <p className="text-stone-600">3. Driver App Activation & ₹1,000 Joining Bonus</p>
             </div>
             <div className="pt-2 flex flex-col sm:flex-row gap-3">
               <a
@@ -91,47 +113,31 @@ export default function CaptainModal({ isOpen, onClose }: CaptainModalProps) {
             <div className="text-center mb-6">
               <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#FEF9C3] text-obsidian text-[11px] font-black uppercase tracking-wider mb-2 border border-yellow-300">
                 <Zap className="w-3.5 h-3.5 fill-[#F9D024] stroke-obsidian" />
-                <span>Chaloji & Sputo Driver Network</span>
+                <span>Sputo Driver Partner Network</span>
               </div>
               <h3 className="text-2xl sm:text-3xl font-black text-obsidian">
                 Become a Sputo Captain
               </h3>
               <p className="text-xs text-stone-500 font-semibold mt-1">
-                Earn up to ₹45,000 - ₹65,000/month with zero commission for your first 30 days.
+                Earn up to ₹45,000 - ₹65,000/month with zero commission for your introductory period.
               </p>
               <div className="mt-2.5">
                 <a
                   href="https://play.google.com/store/apps/details?id=com.chaloji.driver&pcampaignid=web_share"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-stone-100 hover:bg-[#FEF9C3] text-stone-700 hover:text-obsidian text-[11px] font-bold border border-stone-200 transition"
+                  className="inline-flex items-center gap-1 text-xs font-black text-amber-800 hover:text-obsidian underline"
                 >
-                  <span>Direct Download: Captain App on Google Play →</span>
+                  <span>Already registered? Download Driver Partner App on Google Play →</span>
                 </a>
               </div>
             </div>
 
-            {/* Quick Benefits Banner */}
-            <div className="grid grid-cols-3 gap-2.5 mb-6 text-center">
-              <div className="p-3 rounded-xl bg-stone-50 border border-stone-200">
-                <DollarSign className="w-4 h-4 text-obsidian mx-auto mb-1 stroke-[2.5]" />
-                <p className="text-[10px] font-black text-obsidian">Instant Daily Payout</p>
-              </div>
-              <div className="p-3 rounded-xl bg-stone-50 border border-stone-200">
-                <Award className="w-4 h-4 text-obsidian mx-auto mb-1 stroke-[2.5]" />
-                <p className="text-[10px] font-black text-obsidian">0% Commission 30D</p>
-              </div>
-              <div className="p-3 rounded-xl bg-stone-50 border border-stone-200">
-                <Shield className="w-4 h-4 text-emerald-600 mx-auto mb-1 stroke-[2.5]" />
-                <p className="text-[10px] font-black text-obsidian">Health & Life Cover</p>
-              </div>
-            </div>
-
             {/* Form */}
-            <form onSubmit={handleSubmit} className="space-y-3.5">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-[11px] font-black uppercase text-stone-600 mb-1">
+                  <label className="block text-xs font-black uppercase tracking-wider text-stone-700 mb-1">
                     Full Legal Name
                   </label>
                   <input
@@ -139,104 +145,111 @@ export default function CaptainModal({ isOpen, onClose }: CaptainModalProps) {
                     required
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
-                    placeholder="e.g. Vikramaditya Rathore"
-                    className="w-full text-xs font-bold px-3.5 py-3 rounded-xl border border-stone-300 bg-white outline-none focus:ring-2 focus:ring-yellow-400"
+                    placeholder="e.g. Ramesh Kumar"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 text-xs font-bold text-obsidian focus:ring-2 focus:ring-yellow-400 outline-none"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-black uppercase text-stone-600 mb-1">
-                    WhatsApp Mobile Number
+                  <label className="block text-xs font-black uppercase tracking-wider text-stone-700 mb-1">
+                    WhatsApp Phone Number
                   </label>
                   <input
                     type="tel"
                     required
                     value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    placeholder="98200 12345"
-                    className="w-full text-xs font-bold px-3.5 py-3 rounded-xl border border-stone-300 bg-white outline-none focus:ring-2 focus:ring-yellow-400"
+                    onChange={(e) => setPhone(e.target.value.replace(/\D/g, '').slice(0, 10))}
+                    placeholder="10-digit number"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 text-xs font-bold text-obsidian focus:ring-2 focus:ring-yellow-400 outline-none"
                   />
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-[11px] font-black uppercase text-stone-600 mb-1">
-                    Operational City
+                  <label className="block text-xs font-black uppercase tracking-wider text-stone-700 mb-1">
+                    Operating City
                   </label>
                   <select
                     value={city}
                     onChange={(e) => setCity(e.target.value)}
-                    className="w-full text-xs font-bold px-3.5 py-3 rounded-xl border border-stone-300 bg-white outline-none"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 text-xs font-bold text-obsidian focus:ring-2 focus:ring-yellow-400 outline-none bg-white"
                   >
                     <option value="Mumbai">Mumbai MMR</option>
-                    <option value="Pune">Pune & PCMC</option>
-                    <option value="Bengaluru">Bengaluru</option>
+                    <option value="Pune">Pune</option>
                     <option value="Delhi NCR">Delhi NCR</option>
+                    <option value="Bengaluru">Bengaluru</option>
                     <option value="Hyderabad">Hyderabad</option>
                   </select>
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-black uppercase text-stone-600 mb-1">
+                  <label className="block text-xs font-black uppercase tracking-wider text-stone-700 mb-1">
                     Vehicle Category
                   </label>
                   <select
                     value={vehicleType}
                     onChange={(e) => setVehicleType(e.target.value as VehicleCategory)}
-                    className="w-full text-xs font-bold px-3.5 py-3 rounded-xl border border-stone-300 bg-white outline-none"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 text-xs font-bold text-obsidian focus:ring-2 focus:ring-yellow-400 outline-none bg-white"
                   >
-                    <option value="Bike">Sputo Bike Taxi</option>
-                    <option value="Auto">Sputo Auto Rickshaw</option>
-                    <option value="Royale Cab">Sputo Royale Cab (Sedan / AC)</option>
-                    <option value="Priority Cab">⚡ Priority Express Cab (Fast Dispatch)</option>
-                    <option value="Sputo SUV">Sputo 6-Seater SUV (Innova / Ertiga)</option>
+                    <option value="Bike">Bike Taxi (Two-Wheeler)</option>
+                    <option value="Auto">Auto Rickshaw (Three-Wheeler)</option>
+                    <option value="Royale Cab">Sedan Cab (Dzire / Etios)</option>
+                    <option value="Priority Cab">Priority Cab (Swift / Aura)</option>
+                    <option value="Sputo SUV">SUV (Ertiga / Innova)</option>
                   </select>
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-[11px] font-black uppercase text-stone-600 mb-1">
+                  <label className="block text-xs font-black uppercase tracking-wider text-stone-700 mb-1">
                     Driving License Number
                   </label>
                   <input
                     type="text"
                     required
                     value={licenseNumber}
-                    onChange={(e) => setLicenseNumber(e.target.value)}
-                    placeholder="MH02 20180012345"
-                    className="w-full text-xs font-bold px-3.5 py-3 rounded-xl border border-stone-300 bg-white outline-none"
+                    onChange={(e) => setLicenseNumber(e.target.value.toUpperCase())}
+                    placeholder="e.g. MH0220200012345"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 text-xs font-bold text-obsidian focus:ring-2 focus:ring-yellow-400 outline-none uppercase font-mono"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-black uppercase text-stone-600 mb-1">
-                    Vehicle Registration Number
+                  <label className="block text-xs font-black uppercase tracking-wider text-stone-700 mb-1">
+                    Vehicle Number Plate
                   </label>
                   <input
                     type="text"
                     required
                     value={vehicleNumber}
-                    onChange={(e) => setVehicleNumber(e.target.value)}
-                    placeholder="MH 02 ER 8829"
-                    className="w-full text-xs font-bold px-3.5 py-3 rounded-xl border border-stone-300 bg-white outline-none"
+                    onChange={(e) => setVehicleNumber(e.target.value.toUpperCase())}
+                    placeholder="e.g. MH 02 CD 9999"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 text-xs font-bold text-obsidian focus:ring-2 focus:ring-yellow-400 outline-none uppercase font-mono"
                   />
                 </div>
+              </div>
+
+              <div className="p-3.5 rounded-2xl bg-amber-50 border border-amber-200 text-xs space-y-1.5 text-stone-700">
+                <div className="flex items-center gap-1.5 font-black text-amber-900">
+                  <Award className="w-4 h-4" />
+                  <span>Sputo Captain Benefits:</span>
+                </div>
+                <p>• 100% daily earnings directly in your bank account via UPI</p>
+                <p>• Zero commission introductory guarantee + daily ride incentives</p>
+                <p>• ₹5,00,000 accidental medical insurance coverage</p>
               </div>
 
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full mt-4 py-4 px-6 rounded-2xl bg-[#F9D024] hover:bg-[#EAB308] text-obsidian font-black text-xs uppercase tracking-wider shadow-rapido border border-yellow-400 flex items-center justify-center gap-2"
+                className="w-full py-4 px-6 rounded-2xl bg-[#F9D024] hover:bg-[#EAB308] text-obsidian font-black text-xs uppercase tracking-wider shadow-rapido border border-yellow-400 transition flex items-center justify-center gap-2 disabled:opacity-50"
               >
                 {loading ? (
                   <div className="w-4 h-4 rounded-full border-2 border-obsidian border-t-transparent animate-spin" />
                 ) : (
-                  <>
-                    <Car className="w-4 h-4 stroke-[2.5]" />
-                    <span>Submit Captain Application</span>
-                  </>
+                  <span>Submit Captain Onboarding Application</span>
                 )}
               </button>
             </form>

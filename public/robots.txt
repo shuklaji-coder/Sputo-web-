@@ -1,0 +1,7 @@
+# Sputo Mobility - Robots.txt
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://sputo.in/sitemap.xml
+Sitemap: https://sputo-web.vercel.app/sitemap.xml

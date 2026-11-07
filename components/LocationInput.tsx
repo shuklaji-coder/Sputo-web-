@@ -307,14 +307,15 @@ export default function LocationInput({
             type="button"
             onClick={handleGetCurrentLocation}
             disabled={disabled || isLocating}
-            className="flex items-center gap-1 text-[11px] font-bold text-obsidian hover:text-stone-700 transition-colors"
+            className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#FEF9C3] hover:bg-yellow-200 border border-yellow-300 text-[11px] font-black text-obsidian shadow-sm transition-all transform active:scale-95"
+            title="Locate via phone GPS"
           >
             <Navigation
-              className={`w-3 h-3 text-[#F9D024] fill-[#F9D024] stroke-obsidian ${
+              className={`w-3 h-3 text-obsidian fill-[#F9D024] stroke-obsidian ${
                 isLocating ? 'animate-spin' : ''
               }`}
             />
-            {isLocating ? 'Locating...' : 'Use Current GPS'}
+            <span>{isLocating ? 'Detecting GPS...' : '📍 Use Current GPS'}</span>
           </button>
         )}
       </div>
@@ -381,6 +382,31 @@ export default function LocationInput({
           </div>
 
           <div className="py-1">
+            {/* 1-Tap Current Location GPS option for Pickup */}
+            {iconType === 'pickup' && (
+              <button
+                type="button"
+                onClick={() => {
+                  setIsOpen(false);
+                  handleGetCurrentLocation();
+                }}
+                className="w-full text-left px-4 py-3 flex items-center gap-3 bg-[#FEF9C3]/50 hover:bg-[#FEF9C3] transition-colors border-b border-yellow-200 text-obsidian group"
+              >
+                <div className="p-2 rounded-xl bg-[#F9D024] text-obsidian shadow-sm shrink-0">
+                  <Navigation className="w-4 h-4 fill-obsidian" />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <p className="text-xs font-black text-obsidian flex items-center gap-1.5">
+                    <span>Use Your Current Location</span>
+                    <span className="text-[9px] px-1.5 py-0.5 rounded bg-[#F9D024] font-black uppercase text-obsidian">GPS</span>
+                  </p>
+                  <p className="text-[11px] text-stone-600 font-medium truncate mt-0.5">
+                    Tap to auto-detect nearest pickup point via satellite
+                  </p>
+                </div>
+              </button>
+            )}
+
             {suggestions.map((item, idx) => (
               <button
                 key={idx}

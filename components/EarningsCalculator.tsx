@@ -33,7 +33,7 @@ export default function EarningsCalculator({ onOpenCaptainModal }: EarningsCalcu
           <div className="lg:col-span-7 space-y-6">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FEF9C3] text-obsidian text-xs font-black uppercase tracking-wider border border-yellow-300">
               <Zap className="w-4 h-4 fill-[#F9D024] stroke-obsidian" />
-              <span>Drive With Sputo & Chaloji Captain Network</span>
+              <span>Drive With Sputo Captain Partner Network</span>
             </div>
 
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-obsidian leading-tight">

@@ -21,7 +21,7 @@ export default function Footer() {
             </div>
 
             <p className="text-xs text-stone-400 max-w-sm leading-relaxed font-medium">
-              India's premier server-enforced ride dispatch platform. Built upon the Chaloji Captain ecosystem to provide guaranteed transparent fares, zero meter haggling, and verified mobility for millions of daily commuters.
+              India's premier server-enforced ride dispatch platform. Built upon verified Captain networks to provide guaranteed transparent fares, zero meter haggling, and verified mobility for millions of daily commuters.
             </p>
 
             <div className="pt-2 flex items-center gap-4 text-xs font-bold text-[#F9D024]">
@@ -142,7 +142,7 @@ export default function Footer() {
 
         {/* Bottom Copyright */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-stone-500 gap-4 font-medium">
-          <p>© {new Date().getFullYear()} Sputo Royale Mobility Pvt Ltd. Powered by Chaloji Ecosystem.</p>
+          <p>© {new Date().getFullYear()} Sputo Royale Mobility Pvt Ltd. All rights reserved.</p>
           <div className="flex items-center gap-6">
             <a href="/about" className="hover:text-white transition">About Us</a>
             <a href="#" className="hover:text-white transition">Privacy Policy</a>

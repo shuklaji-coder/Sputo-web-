@@ -12,7 +12,7 @@ export default function AppPromo() {
           <div className="lg:col-span-7 space-y-6">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white text-obsidian text-xs font-black uppercase tracking-wider shadow-sm">
               <Zap className="w-3.5 h-3.5 fill-[#F9D024] stroke-obsidian" />
-              <span>Sputo & Chaloji Mobile App</span>
+              <span>Official Sputo Mobile App</span>
             </div>
 
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-obsidian leading-tight">
@@ -21,7 +21,7 @@ export default function AppPromo() {
             </h2>
 
             <p className="text-obsidian/85 text-sm sm:text-base font-semibold leading-relaxed max-w-xl">
-              Download the official Sputo Patron app for iOS & Android. Enjoy 1-tap fast rebooking, live Captain route telemetry, cashless UPI auto-pay, and 24x7 SOS emergency coordination.
+              Download the official Sputo Patron app on Google Play. Enjoy 1-tap fast rebooking, live Captain route telemetry, cashless UPI direct payments, and 24x7 SOS emergency coordination.
             </p>
 
             {/* In-app highlights */}
