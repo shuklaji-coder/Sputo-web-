@@ -21,7 +21,9 @@ import {
   QrCode,
   Zap,
   Radio,
-  Clock
+  Clock,
+  AlertCircle,
+  RotateCcw
 } from 'lucide-react';
 
 interface LiveTrackingModalProps {
@@ -131,65 +133,131 @@ export default function LiveTrackingModal({ rideId, onClose }: LiveTrackingModal
         <div className="p-6 max-h-[80vh] overflow-y-auto space-y-6">
           {/* STATE 1: REQUESTED (REAL LIVE BROADCASTING TO DRIVER APP) */}
           {ride.status === 'requested' && (
-            <div className="text-center py-6 sm:py-8">
-              {/* Sonar Radar Visual */}
-              <div className="relative w-40 h-40 mx-auto flex items-center justify-center mb-6">
-                <div className="sonar-ring w-40 h-40" />
-                <div className="sonar-ring-2 w-32 h-32" />
-                <div className="relative z-10 w-24 h-24 rounded-full bg-white border-4 border-[#F9D024] flex flex-col items-center justify-center shadow-rapido text-obsidian">
-                  <Radio className="w-8 h-8 text-[#F9D024] animate-pulse" />
-                  <span className="text-[10px] font-black uppercase tracking-wider text-obsidian mt-1">
-                    BROADCASTING
-                  </span>
+            elapsedSeconds >= 120 ? (
+              /* STATE 1B: TIMEOUT AFTER 2 MINUTES (NO CAPTAIN AVAILABLE) */
+              <div className="text-center py-6 sm:py-8 space-y-4">
+                <div className="w-20 h-20 rounded-full bg-amber-50 border-2 border-amber-300 flex items-center justify-center mx-auto mb-2 text-amber-600 shadow-sm animate-pulse">
+                  <AlertCircle className="w-10 h-10" />
                 </div>
-              </div>
 
-              <h3 className="text-2xl sm:text-3xl font-black text-obsidian">
-                Connecting with Nearby Captains...
-              </h3>
-              <p className="text-xs text-stone-600 font-semibold mt-2 max-w-md mx-auto">
-                Your request is live on the ChalojiDriver network. Broadcasting to verified {ride.vehicleType} Captains within 3.5 km.
-              </p>
-
-              {/* Live Dispatch Status Cards */}
-              <div className="mt-6 flex flex-wrap justify-center gap-3">
-                <div className="px-4 py-2 rounded-xl bg-[#FEF9C3] border border-yellow-300 text-xs font-black text-obsidian flex items-center gap-1.5">
-                  <Clock className="w-4 h-4 text-obsidian" />
-                  <span>Searching: {formatTimer(elapsedSeconds)}</span>
+                <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-amber-100 text-amber-900 border border-amber-300 text-[11px] font-black uppercase tracking-wider">
+                  <span>High Demand Alert</span>
                 </div>
-                <div className="px-4 py-2 rounded-xl bg-stone-100 border border-stone-200 text-xs font-black text-obsidian">
-                  Locked Fare: ₹{ride.fare} (₹0 Surge)
-                </div>
-              </div>
 
-              {/* Live Pickup Details */}
-              <div className="mt-6 p-4 rounded-2xl bg-stone-50 border border-stone-200 max-w-md mx-auto text-left text-xs space-y-2">
-                <div className="flex items-start gap-2">
-                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 mt-1 shrink-0" />
+                <h3 className="text-2xl sm:text-3xl font-black text-obsidian tracking-tight">
+                  क्षमा चाहते हैं, अभी कोई Driver उपलब्ध नहीं है
+                </h3>
+
+                <p className="text-xs sm:text-sm text-stone-600 font-semibold max-w-md mx-auto leading-relaxed">
+                  Aapke 3.5 km radius me sabhi Sputo <strong className="text-obsidian">{ride.vehicleType}</strong> Captains filhaal ongoing rides par busy hain. Kripya 2 minute baad dobara prayas karein ya hamari 24x7 WhatsApp Helpline par turant connect karein.
+                </p>
+
+                {/* Pickup & Drop preview */}
+                <div className="p-3.5 rounded-2xl bg-stone-50 border border-stone-200 max-w-md mx-auto text-left text-xs space-y-1.5">
                   <p className="text-stone-700 truncate">
                     <strong className="text-obsidian">Pickup:</strong> {ride.pickup.address}
                   </p>
-                </div>
-                <div className="flex items-start gap-2">
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#F9D024] mt-1 shrink-0 border border-stone-600" />
                   <p className="text-stone-700 truncate">
                     <strong className="text-obsidian">Drop:</strong> {ride.drop.address}
                   </p>
+                  <p className="text-stone-900 font-bold">
+                    <strong>Locked Fare:</strong> ₹{ride.fare} (₹0 Surge Guarantee)
+                  </p>
+                </div>
+
+                {/* Action buttons */}
+                <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
+                  <button
+                    type="button"
+                    onClick={() => setElapsedSeconds(0)}
+                    className="w-full sm:w-auto px-5 py-3 rounded-xl bg-[#F9D024] hover:bg-[#EAB308] text-obsidian text-xs font-black shadow-rapido border border-yellow-400 flex items-center justify-center gap-2 transition"
+                  >
+                    <RotateCcw className="w-4 h-4 stroke-[2.5]" />
+                    <span>Dobara Dhoondhein (Retry)</span>
+                  </button>
+
+                  <a
+                    href={`https://wa.me/918087747774?text=Hi%20Sputo,%20no%20driver%20was%20available%20for%20my%20pickup%20at%20${encodeURIComponent(ride.pickup.address)}.%20Please%20help%20me%20book%20a%20${encodeURIComponent(ride.vehicleType)}.`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full sm:w-auto px-5 py-3 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs font-black shadow-md flex items-center justify-center gap-2 transition"
+                  >
+                    <MessageSquare className="w-4 h-4" />
+                    <span>Book via WhatsApp (+91 80877 47774)</span>
+                  </a>
+
+                  <button
+                    type="button"
+                    onClick={handleCancelRide}
+                    disabled={isCancelling}
+                    className="w-full sm:w-auto px-4 py-3 rounded-xl text-xs font-bold text-stone-600 hover:text-red-600 hover:bg-red-50 border border-stone-200 transition"
+                  >
+                    {isCancelling ? 'Cancelling...' : 'Cancel'}
+                  </button>
                 </div>
               </div>
+            ) : (
+              /* STATE 1A: SEARCHING RADAR */
+              <div className="text-center py-6 sm:py-8">
+                {/* Sonar Radar Visual */}
+                <div className="relative w-40 h-40 mx-auto flex items-center justify-center mb-6">
+                  <div className="sonar-ring w-40 h-40" />
+                  <div className="sonar-ring-2 w-32 h-32" />
+                  <div className="relative z-10 w-24 h-24 rounded-full bg-white border-4 border-[#F9D024] flex flex-col items-center justify-center shadow-rapido text-obsidian">
+                    <Radio className="w-8 h-8 text-[#F9D024] animate-pulse" />
+                    <span className="text-[10px] font-black uppercase tracking-wider text-obsidian mt-1">
+                      BROADCASTING
+                    </span>
+                  </div>
+                </div>
 
-              {/* Action Buttons */}
-              <div className="mt-8 pt-6 border-t border-stone-200 flex flex-col sm:flex-row items-center justify-center gap-3">
-                <button
-                  type="button"
-                  onClick={handleCancelRide}
-                  disabled={isCancelling}
-                  className="w-full sm:w-auto px-6 py-3 rounded-xl text-xs font-bold text-red-600 hover:bg-red-50 border border-red-200 transition disabled:opacity-50"
-                >
-                  {isCancelling ? 'Cancelling...' : 'Cancel Ride Request'}
-                </button>
+                <h3 className="text-2xl sm:text-3xl font-black text-obsidian">
+                  Connecting with Nearby Captains...
+                </h3>
+                <p className="text-xs text-stone-600 font-semibold mt-2 max-w-md mx-auto">
+                  Your request is live on the Sputo Captain network. Broadcasting to verified {ride.vehicleType} Captains within 3.5 km.
+                </p>
+
+                {/* Live Dispatch Status Cards */}
+                <div className="mt-6 flex flex-wrap justify-center gap-3">
+                  <div className="px-4 py-2 rounded-xl bg-[#FEF9C3] border border-yellow-300 text-xs font-black text-obsidian flex items-center gap-1.5">
+                    <Clock className="w-4 h-4 text-obsidian" />
+                    <span>Searching: {formatTimer(elapsedSeconds)} / 02:00</span>
+                  </div>
+                  <div className="px-4 py-2 rounded-xl bg-stone-100 border border-stone-200 text-xs font-black text-obsidian">
+                    Locked Fare: ₹{ride.fare} (₹0 Surge)
+                  </div>
+                </div>
+
+                {/* Live Pickup Details */}
+                <div className="mt-6 p-4 rounded-2xl bg-stone-50 border border-stone-200 max-w-md mx-auto text-left text-xs space-y-2">
+                  <div className="flex items-start gap-2">
+                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 mt-1 shrink-0" />
+                    <p className="text-stone-700 truncate">
+                      <strong className="text-obsidian">Pickup:</strong> {ride.pickup.address}
+                    </p>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#F9D024] mt-1 shrink-0 border border-stone-600" />
+                    <p className="text-stone-700 truncate">
+                      <strong className="text-obsidian">Drop:</strong> {ride.drop.address}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Action Buttons */}
+                <div className="mt-8 pt-6 border-t border-stone-200 flex flex-col sm:flex-row items-center justify-center gap-3">
+                  <button
+                    type="button"
+                    onClick={handleCancelRide}
+                    disabled={isCancelling}
+                    className="w-full sm:w-auto px-6 py-3 rounded-xl text-xs font-bold text-red-600 hover:bg-red-50 border border-red-200 transition disabled:opacity-50"
+                  >
+                    {isCancelling ? 'Cancelling...' : 'Cancel Ride Request'}
+                  </button>
+                </div>
               </div>
-            </div>
+            )
           )}
 
           {/* STATE 2: ACCEPTED / IN_PROGRESS (CAPTAIN CARD + YELLOW START OTP + LIVE MAP) */}
