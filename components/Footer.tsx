@@ -134,7 +134,7 @@ export default function Footer() {
                 <span>support@sputoroyale.com</span>
               </li>
               <li className="pt-2 text-[11px] text-stone-500">
-                Operating 24/7/365 with national emergency police liaison.
+                Operating 24/7/365 across Mumbai MMR with emergency police (112) liaison.
               </li>
             </ul>
           </div>
@@ -145,9 +145,9 @@ export default function Footer() {
           <p>© {new Date().getFullYear()} Sputo Royale Mobility Pvt Ltd. All rights reserved.</p>
           <div className="flex items-center gap-6">
             <a href="/about" className="hover:text-white transition">About Us</a>
-            <a href="#" className="hover:text-white transition">Privacy Policy</a>
-            <a href="#" className="hover:text-white transition">Terms of Service</a>
-            <a href="#" className="hover:text-white transition">Safety Protocol</a>
+            <a href="/about#founder-story" className="hover:text-white transition">Our Story</a>
+            <a href="#safety" className="hover:text-white transition">Safety Protocol</a>
+            <a href="#booking-engine" className="hover:text-white transition">Book a Ride</a>
           </div>
         </div>
       </div>

@@ -14,7 +14,7 @@ export default function FaqSection() {
     },
     {
       q: "What is the purpose of the 4-digit Golden Start OTP?",
-      a: "The Start OTP ensures 100% passenger verification and security. Your Captain cannot physically initiate the ride meter without entering your unique 4-digit code in their ChalojiDriver app. This completely eliminates wrong passenger boardings and fraudulent trip starts."
+      a: "The Start OTP ensures 100% passenger verification and security. Your Captain cannot physically initiate the ride meter without entering your unique 4-digit code in their Sputo Captain app. This completely eliminates wrong passenger boardings and fraudulent trip starts."
     },
     {
       q: "What payment methods are supported?",
@@ -26,7 +26,7 @@ export default function FaqSection() {
     },
     {
       q: "How quickly do Captains receive their earnings?",
-      a: "Captains on the Chaloji and Sputo platform receive instant daily payouts transferred directly to their verified bank accounts via IMPS every single evening at 10:00 PM, with 0% platform fee during their introductory period."
+      a: "Captains on the Sputo platform receive instant daily payouts transferred directly to their verified bank accounts via IMPS every single evening at 10:00 PM, with 0% platform fee during their introductory period."
     },
     {
       q: "What should I do if I accidentally leave an item in the vehicle?",
