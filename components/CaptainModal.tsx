@@ -168,18 +168,18 @@ export default function CaptainModal({ isOpen, onClose }: CaptainModalProps) {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                   <label className="block text-xs font-black uppercase tracking-wider text-stone-700 mb-1">
-                    Operating City
+                    Operating Region (Mumbai MMR)
                   </label>
                   <select
                     value={city}
                     onChange={(e) => setCity(e.target.value)}
                     className="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 text-xs font-bold text-obsidian focus:ring-2 focus:ring-yellow-400 outline-none bg-white"
                   >
-                    <option value="Mumbai">Mumbai MMR</option>
-                    <option value="Pune">Pune</option>
-                    <option value="Delhi NCR">Delhi NCR</option>
-                    <option value="Bengaluru">Bengaluru</option>
-                    <option value="Hyderabad">Hyderabad</option>
+                    <option value="Mumbai MMR (All Zones)">Mumbai MMR (All Zones)</option>
+                    <option value="Mumbai (Island City & Suburbs)">Mumbai (Island City & Suburbs)</option>
+                    <option value="Thane & Central">Thane & Central</option>
+                    <option value="Navi Mumbai">Navi Mumbai</option>
+                    <option value="Mira-Bhayandar">Mira-Bhayandar</option>
                   </select>
                 </div>
 

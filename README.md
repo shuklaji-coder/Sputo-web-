@@ -43,11 +43,8 @@ export const functions = getFunctions(app, 'asia-south1');
 1. **Fare Estimation (Server-Enforced):**
    - User inputs Pickup & Drop locations (Google Places Autocomplete with API Key: `AIzaSyCg9fShNFTiJMIREhwBggb1vlvh8cuuQCI`).
    - Calls Firebase Cloud Function: `httpsCallable(functions, 'getRideQuote')` with `{ pickup, drop }`.
-   - Real-time pricing for:
-     * `Sputo Bike` (Fastest, traffic bypass)
-     * `Sputo Auto` (Dependable meter rate)
-     * `Sputo Royale Cab` (Chilled AC Sedan comfort)
-   - 1-Tap Quick Route Presets (BKC ➔ Airport T2, Nariman Point ➔ BKC, Cyber City ➔ Airport).
+   - Real-time pricing for Bike, Auto, Royale Cab & Sputo SUV across Mumbai MMR.
+   - 1-Tap Quick Route Presets (BKC ➔ Airport T2, Nariman Point ➔ BKC, Thane ➔ Vashi).
 
 2. **User Authentication:**
    - Phone Number + OTP verification using `RecaptchaVerifier` and `signInWithPhoneNumber(auth, phoneNumber, recaptchaVerifier)`.
@@ -76,7 +73,7 @@ export const functions = getFunctions(app, 'asia-south1');
 ---
 
 ## ⚡ 4. Rapido-Inspired 20-Year UI/UX Additions
-- **Stats Impact Bar**: 100M+ rides, 150+ cities, 1.5M+ Captains, 4.9★ rating.
+- **Coverage**: Mumbai MMR Exclusive Live Launch (Island City, Western & Central Suburbs, Thane & Navi Mumbai).
 - **Service Pillars**: Sputo Bike Taxi, Sputo Auto, Sputo Royale Cab, and Sputo Parcel Express.
 - **Interactive Captain Earnings Calculator**: Interactive slider (4 to 12 hrs/day) dynamically calculating daily & monthly potential revenue with instant 60s application modal.
 - **Sputo for Business (Corporate Mobility)**: Centralized monthly GST invoices, postpaid credit lines, and team expense management.

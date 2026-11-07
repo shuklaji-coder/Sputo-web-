@@ -13,9 +13,9 @@ interface CitySelectorModalProps {
 
 export const CITIES_DATA = [
   {
-    name: "Mumbai MMR",
-    tagline: "Financial Capital & Coast",
-    hubs: "BKC, Airport T2, Nariman Point, Powai",
+    name: "Mumbai MMR (All Zones)",
+    tagline: "Complete Metropolitan Coverage",
+    hubs: "BKC, Airport T2, CSMT, Dadar, Powai",
     defaultPickup: {
       address: "Bandra Kurla Complex (BKC), G Block, Mumbai",
       latitude: 19.0657,
@@ -28,63 +28,63 @@ export const CITIES_DATA = [
     }
   },
   {
-    name: "Bengaluru",
-    tagline: "Silicon Valley of India",
-    hubs: "Indiranagar, Koramangala, Whitefield, Bellandur",
+    name: "South & Central Mumbai",
+    tagline: "Island City, Heritage & CBD",
+    hubs: "Nariman Point, CSMT, Lower Parel, Dadar",
     defaultPickup: {
-      address: "100 Feet Road, Indiranagar, Bengaluru",
-      latitude: 12.9784,
-      longitude: 77.6408
+      address: "Nariman Point Business District, South Mumbai",
+      latitude: 18.9256,
+      longitude: 72.8242
     },
     defaultDrop: {
-      address: "Kempegowda International Airport (BLR), Devanahalli",
-      latitude: 13.1986,
-      longitude: 77.7066
+      address: "Lower Parel, High Street Phoenix / Palladium, Mumbai",
+      latitude: 18.9950,
+      longitude: 72.8258
     }
   },
   {
-    name: "Delhi NCR",
-    tagline: "National Capital Region",
-    hubs: "Cyber City Gurugram, Connaught Place, Noida Sector 62",
+    name: "Western Suburbs",
+    tagline: "Coastal Belt & Airport Corridor",
+    hubs: "Bandra, Juhu, Andheri, Malad, Borivali",
     defaultPickup: {
-      address: "DLF Cyber City, Building 10, Gurugram",
-      latitude: 28.4950,
-      longitude: 77.0895
+      address: "Andheri West, Link Road, Mumbai",
+      latitude: 19.1363,
+      longitude: 72.8277
     },
     defaultDrop: {
-      address: "Indira Gandhi International Airport (T3), New Delhi",
-      latitude: 28.5562,
-      longitude: 77.1000
+      address: "Chhatrapati Shivaji Maharaj Intl Airport (T2), Mumbai",
+      latitude: 19.0896,
+      longitude: 72.8656
     }
   },
   {
-    name: "Pune",
-    tagline: "Oxford of the East & Tech Hub",
-    hubs: "Koregaon Park, Hinjewadi Phase 1, Viman Nagar",
+    name: "Thane & Central Suburbs",
+    tagline: "Eastern Express & Tech Corridors",
+    hubs: "Thane West, Powai, Ghatkopar, Mulund",
     defaultPickup: {
-      address: "North Main Road, Koregaon Park, Pune",
-      latitude: 18.5362,
-      longitude: 73.8958
+      address: "Thane West, Viviana Mall, Eastern Express Highway",
+      latitude: 19.2089,
+      longitude: 72.9712
     },
     defaultDrop: {
-      address: "Pune International Airport, Lohegaon, Pune",
-      latitude: 18.5822,
-      longitude: 73.9197
+      address: "Hiranandani Gardens, Central Avenue, Powai, Mumbai",
+      latitude: 19.1197,
+      longitude: 72.9051
     }
   },
   {
-    name: "Hyderabad",
-    tagline: "City of Pearls & Cyberabad",
-    hubs: "HITEC City, Gachibowli, Jubilee Hills",
+    name: "Navi Mumbai",
+    tagline: "Planned Nodes & Business Hubs",
+    hubs: "Vashi, Nerul, CBD Belapur, Kharghar",
     defaultPickup: {
-      address: "HITEC City Main Road, Madhapur, Hyderabad",
-      latitude: 17.4474,
-      longitude: 78.3762
+      address: "Vashi Sector 17, Navi Mumbai",
+      latitude: 19.0771,
+      longitude: 72.9986
     },
     defaultDrop: {
-      address: "Rajiv Gandhi Intl Airport (HYD), Shamshabad",
-      latitude: 17.2403,
-      longitude: 78.4294
+      address: "CBD Belapur, Sector 11, Navi Mumbai",
+      latitude: 19.0182,
+      longitude: 73.0400
     }
   }
 ];
@@ -113,11 +113,15 @@ export default function CitySelectorModal({
           <div className="w-14 h-14 rounded-2xl bg-[#FEF9C3] border-2 border-yellow-300 flex items-center justify-center mx-auto mb-3 shadow-sm text-obsidian font-black">
             <Building2 className="w-7 h-7" />
           </div>
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-[11px] font-bold mb-2">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            Currently Live Exclusively in Mumbai MMR
+          </div>
           <h3 className="text-2xl font-black text-obsidian">
-            Select Your City
+            Select Your Zone
           </h3>
           <p className="text-xs text-stone-500 font-semibold mt-1">
-            Choose your operating city for tailored tariffs, local routes, and instantaneous Captain dispatch.
+            Choose your operating region for tailored routes, local tariffs, and instantaneous Captain dispatch.
           </p>
         </div>
 
@@ -165,6 +169,12 @@ export default function CitySelectorModal({
               </button>
             );
           })}
+        </div>
+
+        {/* Mumbai Exclusivity Footer Note */}
+        <div className="mt-4 pt-3 border-t border-stone-100 flex items-center justify-between text-[11px] text-stone-500 font-semibold">
+          <span>📍 Serving Island City, Suburbs, Thane & Navi Mumbai</span>
+          <span className="text-stone-400 font-normal">Other metros launching soon</span>
         </div>
       </div>
     </div>

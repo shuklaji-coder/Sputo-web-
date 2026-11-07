@@ -335,7 +335,7 @@ export default function AboutPage() {
           <span className="text-stone-600">•</span>
           <span>4-DIGIT SECURE RIDE OTP</span>
           <span className="text-stone-600">•</span>
-          <span>MUMBAI • BENGALURU • DELHI NCR • HYDERABAD • PUNE</span>
+          <span>MUMBAI MMR • SOUTH MUMBAI • BKC • THANE • NAVI MUMBAI</span>
         </div>
       </section>
 

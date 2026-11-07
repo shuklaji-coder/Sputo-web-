@@ -88,31 +88,31 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Cities Covered */}
+          {/* Mumbai MMR Coverage */}
           <div className="space-y-3">
             <p className="text-xs font-black uppercase tracking-widest text-white">
-              Metros
+              Mumbai MMR Coverage
             </p>
             <ul className="space-y-2 text-xs font-medium text-stone-400">
               <li className="flex items-center gap-1.5">
                 <MapPin className="w-3.5 h-3.5 text-[#F9D024]" />
-                <span>Mumbai MMR (BKC, Airport T2)</span>
+                <span>South Mumbai (Nariman Pt, Fort, Lower Parel)</span>
               </li>
               <li className="flex items-center gap-1.5">
                 <MapPin className="w-3.5 h-3.5 text-[#F9D024]" />
-                <span>Bengaluru (Indiranagar, Whitefield)</span>
+                <span>Bandra & BKC (Financial Center, T1/T2)</span>
               </li>
               <li className="flex items-center gap-1.5">
                 <MapPin className="w-3.5 h-3.5 text-[#F9D024]" />
-                <span>Delhi NCR (Cyber City, Noida)</span>
+                <span>Western Suburbs (Andheri, Juhu, Borivali)</span>
               </li>
               <li className="flex items-center gap-1.5">
                 <MapPin className="w-3.5 h-3.5 text-[#F9D024]" />
-                <span>Pune (Koregaon Park, Hinjewadi)</span>
+                <span>Central & Thane (Ghatkopar, Powai, Thane)</span>
               </li>
               <li className="flex items-center gap-1.5">
                 <MapPin className="w-3.5 h-3.5 text-[#F9D024]" />
-                <span>Hyderabad (HITEC City)</span>
+                <span>Navi Mumbai (Vashi, Belapur, Kharghar)</span>
               </li>
             </ul>
           </div>

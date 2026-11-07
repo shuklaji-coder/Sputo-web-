@@ -61,7 +61,7 @@ export default function RoyalPerks() {
     },
     {
       name: "Dr. Ananya Roy",
-      role: "Consultant Neurologist, Pune",
+      role: "Consultant Neurologist, Powai, Mumbai",
       quote: "The 4-digit OTP security and live ride share link gives me complete peace of mind during late-night hospital shifts. Unmatched safety standard.",
       rating: 5
     }

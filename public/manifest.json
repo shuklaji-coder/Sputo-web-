@@ -1,7 +1,7 @@
 {
   "name": "SPUTO — Quick Bike Taxi, Auto & Cabs",
   "short_name": "Sputo",
-  "description": "Traffic Ka Chakkar Chhodo, Sputo Pakdo. ₹0 Surge Guarantee across India.",
+  "description": "Traffic Ka Chakkar Chhodo, Sputo Pakdo. ₹0 Surge Guarantee across Mumbai MMR.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#FAF9F5",
@@ -22,3 +22,4 @@
     }
   ]
 }
+

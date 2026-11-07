@@ -29,9 +29,13 @@ export const metadata: Metadata = {
     'ola uber alternative',
     'zero surge cab',
     'mumbai cab booking',
-    'pune bike taxi',
-    'delhi ncr auto',
-    'ride booking app india'
+    'mumbai bike taxi',
+    'mumbai auto rickshaw',
+    'bkc cab booking',
+    'thane auto rickshaw',
+    'navi mumbai cabs',
+    'mumbai mmr ride hailing',
+    'ride booking app mumbai'
   ],
   authors: [{ name: 'Rohan Shukla', url: 'https://www.linkedin.com/in/rohan-shukla-0b8889321/' }],
   creator: 'Rohan Shukla',
@@ -49,7 +53,7 @@ export const metadata: Metadata = {
     locale: 'en_IN',
     url: 'https://sputo.in',
     title: 'SPUTO — Traffic Ka Chakkar Chhodo, Sputo Pakdo',
-    description: 'India\'s honest ride-hailing app with ₹0 surge, 2-min priority dispatch & verified Captains. Book Bike Taxi, Auto & Cabs across India.',
+    description: 'Mumbai\'s honest ride-hailing app with ₹0 surge, 2-min priority dispatch & verified Captains. Book Bike Taxi, Auto & Cabs across Mumbai MMR.',
     siteName: 'SPUTO Royale Mobility',
     images: [
       {

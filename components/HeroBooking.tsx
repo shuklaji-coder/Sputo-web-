@@ -66,22 +66,18 @@ export default function HeroBooking({ onRideCreated }: HeroBookingProps) {
     },
     {
       label: "Nariman Point ➔ BKC",
-      pickup: POPULAR_LOCATIONS[2],
+      pickup: POPULAR_LOCATIONS[5],
       drop: POPULAR_LOCATIONS[0]
     },
     {
-      label: "Powai ➔ Juhu Tara Road",
-      pickup: POPULAR_LOCATIONS[3],
-      drop: POPULAR_LOCATIONS[4]
+      label: "Andheri West ➔ Airport T2",
+      pickup: POPULAR_LOCATIONS[4],
+      drop: POPULAR_LOCATIONS[1]
     },
     {
-      label: "Cyber City ➔ Airport",
-      pickup: POPULAR_LOCATIONS[5],
-      drop: {
-        address: "IGI Airport Terminal 3, New Delhi",
-        latitude: 28.5562,
-        longitude: 77.1000
-      }
+      label: "Thane ➔ Vashi Navi Mumbai",
+      pickup: POPULAR_LOCATIONS[8],
+      drop: POPULAR_LOCATIONS[9]
     }
   ];
 
@@ -214,7 +210,7 @@ export default function HeroBooking({ onRideCreated }: HeroBookingProps) {
           </h1>
 
           <p className="text-base sm:text-lg text-stone-600 font-semibold max-w-xl">
-            Na koi khit-khit, na surge pricing. Doorstep pickup in Bike Taxi, Auto & Cabs across 150+ Indian cities.
+            Na koi khit-khit, na surge pricing. Doorstep pickup in Bike Taxi, Auto & Cabs across Mumbai MMR (Mumbai, Thane & Navi Mumbai).
           </p>
 
           {/* 1-Tap Popular Route Presets Chips with Micro-interactions */}

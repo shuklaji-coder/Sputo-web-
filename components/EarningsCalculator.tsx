@@ -44,7 +44,7 @@ export default function EarningsCalculator({ onOpenCaptainModal }: EarningsCalcu
             </h2>
 
             <p className="text-sm sm:text-base text-stone-600 font-semibold max-w-xl leading-relaxed">
-              Drive with dignity across India. Choose your own flexible driving hours, enjoy 0% introductory platform commission, and earn guaranteed weekly performance bonuses.
+              Drive with dignity across Mumbai MMR. Choose your own flexible driving hours, enjoy 0% introductory platform commission, and earn guaranteed weekly performance bonuses.
             </p>
 
             {/* Vehicle Selector */}
@@ -60,11 +60,10 @@ export default function EarningsCalculator({ onOpenCaptainModal }: EarningsCalcu
                     whileHover={{ scale: 1.03 }}
                     whileTap={{ scale: 0.97 }}
                     onClick={() => setVehicle(v)}
-                    className={`py-3 px-3 rounded-2xl text-xs sm:text-sm font-black border transition-all text-center ${
-                      vehicle === v
+                    className={`py-3 px-3 rounded-2xl text-xs sm:text-sm font-black border transition-all text-center ${vehicle === v
                         ? 'bg-[#F9D024] text-obsidian border-yellow-400 shadow-rapido'
                         : 'bg-stone-50 hover:bg-stone-100 border-stone-200 text-stone-700'
-                    } ${idx === 4 ? 'col-span-2 sm:col-span-1' : ''}`}
+                      } ${idx === 4 ? 'col-span-2 sm:col-span-1' : ''}`}
                   >
                     {v}
                   </motion.button>
@@ -164,7 +163,7 @@ export default function EarningsCalculator({ onOpenCaptainModal }: EarningsCalcu
               </motion.button>
 
               <p className="text-[10px] text-stone-500 mt-3 font-semibold">
-                *Estimated gross revenue based on real Mumbai & Pune fleet averages.
+                *Estimated gross revenue based on real Mumbai MMR fleet averages.
               </p>
             </motion.div>
           </div>

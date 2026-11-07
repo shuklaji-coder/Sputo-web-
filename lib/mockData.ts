@@ -57,89 +57,35 @@ export const POPULAR_LOCATIONS: LocationPoint[] = [
     latitude: 19.2307,
     longitude: 72.8567,
   },
-  // Delhi NCR
   {
-    address: "Cyber City, DLF Phase 2, Gurugram, Delhi NCR",
-    latitude: 28.4950,
-    longitude: 77.0895,
+    address: "Lower Parel, High Street Phoenix / Palladium, Mumbai",
+    latitude: 18.9950,
+    longitude: 72.8258,
   },
   {
-    address: "Connaught Place (CP), Inner Circle, New Delhi",
-    latitude: 28.6315,
-    longitude: 77.2167,
+    address: "Ghatkopar West, R City Mall & Metro, Mumbai",
+    latitude: 19.0998,
+    longitude: 72.9163,
   },
   {
-    address: "Indira Gandhi International Airport (T3), New Delhi",
-    latitude: 28.5562,
-    longitude: 77.1000,
+    address: "Malad West, Inorbit Mall, Link Road, Mumbai",
+    latitude: 19.1868,
+    longitude: 72.8347,
   },
   {
-    address: "Sector 18, Atta Market, Noida, Uttar Pradesh",
-    latitude: 28.5708,
-    longitude: 77.3260,
+    address: "CBD Belapur, Sector 11, Navi Mumbai",
+    latitude: 19.0182,
+    longitude: 73.0400,
   },
   {
-    address: "Hauz Khas Village, New Delhi",
-    latitude: 28.5535,
-    longitude: 77.1945,
-  },
-  // Bengaluru Hubs
-  {
-    address: "Indiranagar 100 Feet Road, Bengaluru",
-    latitude: 12.9784,
-    longitude: 77.6408,
+    address: "Goregaon East, NESCO IT Park, WEH, Mumbai",
+    latitude: 19.1551,
+    longitude: 72.8550,
   },
   {
-    address: "Koramangala 5th Block, Sony World Signal, Bengaluru",
-    latitude: 12.9352,
-    longitude: 77.6245,
-  },
-  {
-    address: "Whitefield, ITPL Main Road, Bengaluru",
-    latitude: 12.9855,
-    longitude: 77.7317,
-  },
-  {
-    address: "Kempegowda International Airport (BLR), Devanahalli, Bengaluru",
-    latitude: 13.1986,
-    longitude: 77.7066,
-  },
-  {
-    address: "MG Road, Brigade Road Junction, Bengaluru",
-    latitude: 12.9756,
-    longitude: 77.6066,
-  },
-  // Pune Hubs
-  {
-    address: "Hinjewadi IT Park, Phase 1, Pune",
-    latitude: 18.5913,
-    longitude: 73.7389,
-  },
-  {
-    address: "Koregaon Park, North Main Road, Pune",
-    latitude: 18.5362,
-    longitude: 73.8939,
-  },
-  {
-    address: "Viman Nagar, Phoenix Marketcity, Pune",
-    latitude: 18.5626,
-    longitude: 73.9168,
-  },
-  // Hyderabad Hubs
-  {
-    address: "HITEC City, Cyber Towers, Madhapur, Hyderabad",
-    latitude: 17.4504,
-    longitude: 78.3808,
-  },
-  {
-    address: "Gachibowli, Financial District, Hyderabad",
-    latitude: 17.4401,
-    longitude: 78.3489,
-  },
-  {
-    address: "Rajiv Gandhi International Airport (RGIA), Shamshabad, Hyderabad",
-    latitude: 17.2403,
-    longitude: 78.4294,
+    address: "Kharghar, Central Park / Hiranandani, Navi Mumbai",
+    latitude: 19.0473,
+    longitude: 73.0699,
   },
 ];
 
