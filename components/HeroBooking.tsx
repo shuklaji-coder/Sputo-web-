@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from 'framer-motion';
 import { LocationPoint, QuoteData, VehicleCategory, VehicleOption } from '@/lib/types';
 import { POPULAR_LOCATIONS } from '@/lib/mockData';
 import { getRideQuote, createRide } from '@/lib/bookingService';
@@ -29,6 +29,72 @@ import {
 
 interface HeroBookingProps {
   onRideCreated: (rideId: string) => void;
+}
+
+// 1. Pro-Designer Rolling Odometer Price Animation
+function AnimatedPrice({ value }: { value: number }) {
+  const [displayValue, setDisplayValue] = useState<number>(value);
+
+  useEffect(() => {
+    let startTimestamp: number | null = null;
+    const startVal = displayValue;
+    const endVal = value;
+    if (startVal === endVal) return;
+    const duration = 320;
+
+    const step = (timestamp: number) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const elapsed = timestamp - startTimestamp;
+      const progress = Math.min(elapsed / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 3);
+      setDisplayValue(Math.round(startVal + (endVal - startVal) * ease));
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      }
+    };
+    const animId = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(animId);
+  }, [value]);
+
+  return <span className="text-lg font-black text-obsidian tracking-tight">₹{displayValue}</span>;
+}
+
+// 2. Pro-Designer 3D Gyroscopic Mouse Parallax Card
+function TiltHeroCard({ children }: { children: React.ReactNode }) {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const mouseXSpring = useSpring(x, { stiffness: 220, damping: 25 });
+  const mouseYSpring = useSpring(y, { stiffness: 220, damping: 25 });
+
+  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["7deg", "-7deg"]);
+  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-7deg", "7deg"]);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    x.set((e.clientX - rect.left) / rect.width - 0.5);
+    y.set((e.clientY - rect.top) / rect.height - 0.5);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
+
+  return (
+    <motion.div
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{
+        rotateX,
+        rotateY,
+        transformStyle: "preserve-3d",
+      }}
+      className="relative w-full rounded-3xl"
+    >
+      {children}
+    </motion.div>
+  );
 }
 
 export default function HeroBooking({ onRideCreated }: HeroBookingProps) {
@@ -233,44 +299,48 @@ export default function HeroBooking({ onRideCreated }: HeroBookingProps) {
           </div>
         </motion.div>
 
-        {/* Right Column: Full Sputo Fleet Image with Levitation Animation (6 cols) */}
+        {/* Right Column: Full Sputo Fleet Image with 3D Parallax Gyroscope (6 cols) */}
         <motion.div
           initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
           className="lg:col-span-6 relative"
         >
-          <motion.div
-            animate={{ y: [0, -8, 0] }}
-            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-            className="relative w-full rounded-3xl overflow-hidden bg-white border border-stone-200 shadow-rapido-card group hover:shadow-2xl transition-all duration-300"
-          >
-            <img
-              src="/images/sputo-fleet.jpg"
-              alt="Sputo Fleet - Bike Taxi, Auto Rickshaw & Cab in BKC Mumbai"
-              className="w-full h-auto object-contain rounded-3xl transition-transform duration-700 group-hover:scale-102"
-            />
+          <TiltHeroCard>
+            <div className="relative w-full rounded-3xl overflow-hidden bg-white border-2 border-stone-200 shadow-rapido-card group hover:shadow-2xl transition-all duration-300">
+              <img
+                src="/images/sputo-fleet.jpg"
+                alt="Sputo Fleet - Bike Taxi, Auto Rickshaw & Cab in BKC Mumbai"
+                className="w-full h-auto object-contain rounded-3xl transition-transform duration-700 group-hover:scale-102"
+              />
 
-            {/* Floating Top Badge with pulsing beacon */}
-            <div className="absolute top-4 left-4 z-10 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/95 backdrop-blur-md border border-stone-200 shadow-sm text-xs font-black text-obsidian">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-              </span>
-              <span>Doorstep in 2-5 Mins</span>
-            </div>
+              {/* Floating Top Badge with true 3D parallax depth */}
+              <div
+                style={{ transform: "translateZ(40px)" }}
+                className="absolute top-4 left-4 z-10 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/95 backdrop-blur-md border border-stone-200 shadow-lg text-xs font-black text-obsidian"
+              >
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                </span>
+                <span>Doorstep in 2-5 Mins</span>
+              </div>
 
-            {/* Floating Bottom Badge */}
-            <div className="absolute bottom-4 left-4 right-4 z-10 flex items-center justify-between gap-2">
-              <div className="px-3.5 py-1.5 rounded-xl bg-stone-900/90 text-white backdrop-blur-md text-xs font-bold shadow-md flex items-center gap-2 border border-stone-800">
-                <span className="w-2 h-2 rounded-full bg-[#F9D024]" />
-                <span>BKC Mumbai Hub</span>
-              </div>
-              <div className="px-3.5 py-1.5 rounded-xl bg-[#F9D024] text-obsidian text-xs font-black shadow-md border border-yellow-400">
-                4.9 ★ Captains
+              {/* Floating Bottom Badges with true 3D parallax depth */}
+              <div
+                style={{ transform: "translateZ(45px)" }}
+                className="absolute bottom-4 left-4 right-4 z-10 flex items-center justify-between gap-2"
+              >
+                <div className="px-3.5 py-1.5 rounded-xl bg-stone-900/90 text-white backdrop-blur-md text-xs font-bold shadow-lg flex items-center gap-2 border border-stone-800">
+                  <span className="w-2 h-2 rounded-full bg-[#F9D024] animate-pulse" />
+                  <span>BKC Mumbai Hub</span>
+                </div>
+                <div className="px-3.5 py-1.5 rounded-xl bg-[#F9D024] text-obsidian text-xs font-black shadow-lg border border-yellow-400">
+                  4.9 ★ Captains
+                </div>
               </div>
             </div>
-          </motion.div>
+          </TiltHeroCard>
         </motion.div>
       </div>
 
@@ -278,59 +348,79 @@ export default function HeroBooking({ onRideCreated }: HeroBookingProps) {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Left Column: Interactive Booking Wizard (7 cols) */}
         <div className="lg:col-span-7 bg-white rounded-3xl p-4 sm:p-6 lg:p-8 shadow-rapido-card border border-stone-200 relative">
-          {/* Mode & Timing Switcher */}
+          {/* Mode & Timing Switcher with Liquid Magnetic Spring Pills */}
           <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-stone-100 mb-5">
             {/* Service Type Switcher */}
-            <div className="inline-flex p-1 rounded-2xl bg-stone-100 border border-stone-200">
+            <div className="inline-flex p-1 rounded-2xl bg-stone-100 border border-stone-200 relative">
               <button
                 type="button"
                 onClick={() => setBookingMode('ride')}
-                className={`flex items-center gap-1.5 px-4 py-1.5 rounded-xl text-xs font-black transition ${
-                  bookingMode === 'ride'
-                    ? 'bg-[#F9D024] text-obsidian shadow-sm'
-                    : 'text-stone-600 hover:text-obsidian'
+                className={`relative z-10 flex items-center gap-1.5 px-4 py-1.5 rounded-xl text-xs font-black transition-colors ${
+                  bookingMode === 'ride' ? 'text-obsidian' : 'text-stone-600 hover:text-obsidian'
                 }`}
               >
+                {bookingMode === 'ride' && (
+                  <motion.div
+                    layoutId="bookingModePill"
+                    className="absolute inset-0 bg-[#F9D024] rounded-xl shadow-sm border border-yellow-400 -z-10"
+                    transition={{ type: "spring", stiffness: 500, damping: 35 }}
+                  />
+                )}
                 <Bike className="w-3.5 h-3.5 stroke-[2.5]" />
                 <span>Daily Ride</span>
               </button>
               <button
                 type="button"
                 onClick={() => setBookingMode('parcel')}
-                className={`flex items-center gap-1.5 px-4 py-1.5 rounded-xl text-xs font-black transition ${
-                  bookingMode === 'parcel'
-                    ? 'bg-[#F9D024] text-obsidian shadow-sm'
-                    : 'text-stone-600 hover:text-obsidian'
+                className={`relative z-10 flex items-center gap-1.5 px-4 py-1.5 rounded-xl text-xs font-black transition-colors ${
+                  bookingMode === 'parcel' ? 'text-obsidian' : 'text-stone-600 hover:text-obsidian'
                 }`}
               >
+                {bookingMode === 'parcel' && (
+                  <motion.div
+                    layoutId="bookingModePill"
+                    className="absolute inset-0 bg-[#F9D024] rounded-xl shadow-sm border border-yellow-400 -z-10"
+                    transition={{ type: "spring", stiffness: 500, damping: 35 }}
+                  />
+                )}
                 <Package className="w-3.5 h-3.5 stroke-[2.5]" />
                 <span>Parcel</span>
               </button>
             </div>
 
             {/* Ride Now vs Schedule Later Switcher */}
-            <div className="inline-flex p-1 rounded-2xl bg-stone-100 border border-stone-200">
+            <div className="inline-flex p-1 rounded-2xl bg-stone-100 border border-stone-200 relative">
               <button
                 type="button"
                 onClick={() => setTimingMode('now')}
-                className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-black transition ${
-                  timingMode === 'now'
-                    ? 'bg-obsidian text-white shadow-sm'
-                    : 'text-stone-600 hover:text-obsidian'
+                className={`relative z-10 flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-black transition-colors ${
+                  timingMode === 'now' ? 'text-white' : 'text-stone-600 hover:text-obsidian'
                 }`}
               >
+                {timingMode === 'now' && (
+                  <motion.div
+                    layoutId="timingModePill"
+                    className="absolute inset-0 bg-obsidian rounded-xl shadow-sm -z-10"
+                    transition={{ type: "spring", stiffness: 500, damping: 35 }}
+                  />
+                )}
                 <Zap className="w-3 h-3 fill-[#F9D024] text-[#F9D024]" />
                 <span>Ride Now</span>
               </button>
               <button
                 type="button"
                 onClick={() => setTimingMode('schedule')}
-                className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-black transition ${
-                  timingMode === 'schedule'
-                    ? 'bg-[#F9D024] text-obsidian shadow-sm border border-yellow-400'
-                    : 'text-stone-600 hover:text-obsidian'
+                className={`relative z-10 flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-black transition-colors ${
+                  timingMode === 'schedule' ? 'text-obsidian' : 'text-stone-600 hover:text-obsidian'
                 }`}
               >
+                {timingMode === 'schedule' && (
+                  <motion.div
+                    layoutId="timingModePill"
+                    className="absolute inset-0 bg-[#F9D024] rounded-xl shadow-sm border border-yellow-400 -z-10"
+                    transition={{ type: "spring", stiffness: 500, damping: 35 }}
+                  />
+                )}
                 <Calendar className="w-3 h-3 stroke-[2.5]" />
                 <span>Schedule Later</span>
               </button>
@@ -373,8 +463,8 @@ export default function HeroBooking({ onRideCreated }: HeroBookingProps) {
             </motion.div>
           )}
 
-          {/* Location Inputs with Swap Button */}
-          <div className="space-y-3 relative mb-6">
+          {/* Location Inputs with Swap Button & Quick Hubs */}
+          <div className="space-y-3 relative mb-5">
             <LocationInput
               label={bookingMode === 'parcel' ? 'Sender Pickup Point' : 'Pickup Location'}
               placeholder="Enter pickup address, office, or landmark..."
@@ -384,7 +474,7 @@ export default function HeroBooking({ onRideCreated }: HeroBookingProps) {
             />
 
             {/* Swap Button */}
-            <div className="absolute right-6 top-1/2 -translate-y-1/2 z-10">
+            <div className="absolute right-6 top-[72px] -translate-y-1/2 z-10">
               <button
                 type="button"
                 onClick={handleSwapLocations}
@@ -402,6 +492,31 @@ export default function HeroBooking({ onRideCreated }: HeroBookingProps) {
               onChange={setDrop}
               iconType="drop"
             />
+
+            {/* 1-Tap Quick Mumbai Hubs */}
+            <div className="pt-1 flex flex-wrap items-center gap-1.5">
+              <span className="text-[10px] font-black text-stone-500 uppercase tracking-wider mr-1">
+                QUICK HUBS:
+              </span>
+              {[
+                { label: 'BKC G-Block', point: POPULAR_LOCATIONS[0] },
+                { label: 'Airport T2', point: POPULAR_LOCATIONS[1] },
+                { label: 'Lower Parel', point: POPULAR_LOCATIONS[11] },
+                { label: 'Dadar West', point: POPULAR_LOCATIONS[3] },
+                { label: 'Vashi', point: POPULAR_LOCATIONS[9] },
+              ].map((hub, hIdx) => (
+                <motion.button
+                  key={hIdx}
+                  type="button"
+                  whileHover={{ scale: 1.05, y: -1 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => setDrop(hub.point)}
+                  className="px-2.5 py-1 rounded-full bg-stone-100 hover:bg-[#FEF9C3] text-stone-700 hover:text-obsidian text-[11px] font-bold border border-stone-200 hover:border-yellow-400 transition shadow-2xs"
+                >
+                  📍 {hub.label}
+                </motion.button>
+              ))}
+            </div>
           </div>
 
           {/* Parcel specific inputs if Parcel mode active */}
@@ -558,12 +673,10 @@ export default function HeroBooking({ onRideCreated }: HeroBookingProps) {
                         </div>
                       </div>
 
-                      {/* Bottom: Fare + Discount */}
+                      {/* Bottom: Fare + Discount with Rolling Odometer */}
                       <div className="mt-3 pt-2.5 border-t border-stone-100 flex items-baseline justify-between">
                         <div>
-                          <span className="text-lg font-black text-obsidian">
-                            ₹{veh.fare}
-                          </span>
+                          <AnimatedPrice value={veh.fare} />
                           {veh.originalFare && (
                             <span className="text-[10px] text-stone-400 line-through ml-1 font-semibold">
                               ₹{veh.originalFare}
@@ -634,17 +747,21 @@ export default function HeroBooking({ onRideCreated }: HeroBookingProps) {
             </div>
           )}
 
-          {/* Main Action Button - Full Rapido Yellow with spring animations */}
+          {/* Main Action Button - Pro-Designer Spring + Continuous Metallic Glimmer */}
           <motion.button
             type="button"
-            whileHover={{ scale: 1.015, y: -2 }}
-            whileTap={{ scale: 0.98 }}
+            whileHover={{ scale: 1.02, y: -2 }}
+            whileTap={{ scale: 0.97 }}
             onClick={handleBookRide}
             disabled={isBooking || isQuoting || !quote}
-            className="w-full py-4 px-6 rounded-2xl bg-[#F9D024] hover:bg-[#EAB308] text-obsidian font-black text-base tracking-wide uppercase shadow-rapido border border-yellow-400 transition-colors flex items-center justify-center gap-3 disabled:opacity-50 disabled:pointer-events-none relative overflow-hidden group"
+            className="w-full py-4 px-6 rounded-2xl bg-[#F9D024] hover:bg-[#EAB308] text-obsidian font-black text-base tracking-wide uppercase shadow-[0_14px_35px_-8px_rgba(249,208,36,0.6)] border-2 border-yellow-400 transition-all flex items-center justify-center gap-3 disabled:opacity-50 disabled:pointer-events-none relative overflow-hidden group"
           >
-            {/* Animated shimmer highlight beam */}
-            <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/30 to-transparent pointer-events-none" />
+            {/* Continuous Animated Metallic Light Sweep */}
+            <motion.div
+              animate={{ x: ['-100%', '250%'] }}
+              transition={{ repeat: Infinity, duration: 3, ease: "easeInOut", repeatDelay: 1.5 }}
+              className="absolute inset-0 w-1/3 bg-gradient-to-r from-transparent via-white/50 to-transparent skew-x-12 pointer-events-none"
+            />
 
             {isBooking ? (
               <>
@@ -712,8 +829,17 @@ export default function HeroBooking({ onRideCreated }: HeroBookingProps) {
               )}
             </div>
 
-            {/* Google Map Viewport */}
-            <div className="w-full h-[400px] sm:h-[470px] rounded-2xl overflow-hidden border border-stone-200">
+            {/* Google Map Viewport with Live Radar Dispatch HUD */}
+            <div className="w-full h-[400px] sm:h-[470px] rounded-2xl overflow-hidden border border-stone-200 relative">
+              {/* Radar Dispatch HUD Overlay */}
+              <div className="absolute top-3 left-3 z-10 pointer-events-none flex items-center gap-2 px-3 py-1.5 rounded-full bg-stone-900/90 backdrop-blur-md border border-stone-700/80 text-white shadow-xl text-[11px] font-bold">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                </span>
+                <span>MMR Radar: <strong className="text-[#F9D024]">42 Captains Scanning</strong></span>
+              </div>
+
               <GoogleMapComponent
                 pickup={pickup}
                 drop={drop}

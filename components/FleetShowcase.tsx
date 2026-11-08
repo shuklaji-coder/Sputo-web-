@@ -22,87 +22,41 @@ export default function FleetShowcase() {
         </p>
       </div>
 
-      {/* Fleet Tabs (Rapido Style Yellow Switcher - Horizontally scrollable on mobile) */}
+      {/* Fleet Tabs (Pro-Designer Liquid Spring Switcher - Horizontally scrollable on mobile) */}
       <div className="flex justify-start sm:justify-center mb-8 overflow-x-auto no-scrollbar py-2 px-1">
-        <div className="inline-flex p-1.5 rounded-2xl bg-stone-100 border border-stone-200 shadow-sm shrink-0 gap-1">
-          <motion.button
-            whileHover={{ scale: 1.04 }}
-            whileTap={{ scale: 0.96 }}
-            onClick={() => setActiveTab('bike')}
-            className={`flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-black whitespace-nowrap transition-all ${
-              activeTab === 'bike'
-                ? 'bg-[#F9D024] text-obsidian shadow-rapido border border-yellow-400'
-                : 'text-stone-700 hover:text-obsidian'
-            }`}
-          >
-            <Bike className="w-4 h-4 stroke-[2.5]" />
-            <span>Bike Taxi</span>
-          </motion.button>
-          <motion.button
-            whileHover={{ scale: 1.04 }}
-            whileTap={{ scale: 0.96 }}
-            onClick={() => setActiveTab('auto')}
-            className={`flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-black whitespace-nowrap transition-all ${
-              activeTab === 'auto'
-                ? 'bg-[#F9D024] text-obsidian shadow-rapido border border-yellow-400'
-                : 'text-stone-700 hover:text-obsidian'
-            }`}
-          >
-            <Car className="w-4 h-4 stroke-[2.5]" />
-            <span>Sputo Auto</span>
-          </motion.button>
-          <motion.button
-            whileHover={{ scale: 1.04 }}
-            whileTap={{ scale: 0.96 }}
-            onClick={() => setActiveTab('cab')}
-            className={`flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-black whitespace-nowrap transition-all ${
-              activeTab === 'cab'
-                ? 'bg-[#F9D024] text-obsidian shadow-rapido border border-yellow-400'
-                : 'text-stone-700 hover:text-obsidian'
-            }`}
-          >
-            <Car className="w-4 h-4 stroke-[2.5]" />
-            <span>Royale Cab</span>
-          </motion.button>
-          <motion.button
-            whileHover={{ scale: 1.04 }}
-            whileTap={{ scale: 0.96 }}
-            onClick={() => setActiveTab('priority')}
-            className={`flex items-center gap-1.5 px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-black whitespace-nowrap transition-all ${
-              activeTab === 'priority'
-                ? 'bg-amber-400 text-obsidian shadow-rapido border border-amber-500'
-                : 'text-stone-700 hover:text-obsidian'
-            }`}
-          >
-            <Zap className="w-4 h-4 fill-amber-500 stroke-obsidian" />
-            <span>⚡ Priority</span>
-          </motion.button>
-          <motion.button
-            whileHover={{ scale: 1.04 }}
-            whileTap={{ scale: 0.96 }}
-            onClick={() => setActiveTab('suv')}
-            className={`flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-black whitespace-nowrap transition-all ${
-              activeTab === 'suv'
-                ? 'bg-[#F9D024] text-obsidian shadow-rapido border border-yellow-400'
-                : 'text-stone-700 hover:text-obsidian'
-            }`}
-          >
-            <Car className="w-4 h-4 stroke-[2.5]" />
-            <span>Sputo SUV</span>
-          </motion.button>
-          <motion.button
-            whileHover={{ scale: 1.04 }}
-            whileTap={{ scale: 0.96 }}
-            onClick={() => setActiveTab('parcel')}
-            className={`flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-black whitespace-nowrap transition-all ${
-              activeTab === 'parcel'
-                ? 'bg-[#F9D024] text-obsidian shadow-rapido border border-yellow-400'
-                : 'text-stone-700 hover:text-obsidian'
-            }`}
-          >
-            <Package className="w-4 h-4 stroke-[2.5]" />
-            <span>Parcel Express</span>
-          </motion.button>
+        <div className="inline-flex p-1.5 rounded-2xl bg-stone-100 border border-stone-200 shadow-sm shrink-0 gap-1 relative">
+          {[
+            { id: 'bike' as const, label: 'Bike Taxi', icon: Bike },
+            { id: 'auto' as const, label: 'Sputo Auto', icon: Car },
+            { id: 'cab' as const, label: 'Royale Cab', icon: Car },
+            { id: 'priority' as const, label: '⚡ Priority', icon: Zap },
+            { id: 'suv' as const, label: 'Sputo SUV', icon: Car },
+            { id: 'parcel' as const, label: 'Parcel Express', icon: Package },
+          ].map((tab) => {
+            const Icon = tab.icon;
+            const isCurrent = activeTab === tab.id;
+            return (
+              <motion.button
+                key={tab.id}
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                onClick={() => setActiveTab(tab.id)}
+                className={`relative z-10 flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-black whitespace-nowrap transition-colors ${
+                  isCurrent ? 'text-obsidian' : 'text-stone-700 hover:text-obsidian'
+                }`}
+              >
+                {isCurrent && (
+                  <motion.div
+                    layoutId="fleetActivePill"
+                    className="absolute inset-0 bg-[#F9D024] rounded-xl shadow-rapido border border-yellow-400 -z-10"
+                    transition={{ type: "spring", stiffness: 450, damping: 32 }}
+                  />
+                )}
+                <Icon className={`w-4 h-4 ${tab.id === 'priority' ? 'fill-amber-500 stroke-obsidian' : 'stroke-[2.5]'}`} />
+                <span>{tab.label}</span>
+              </motion.button>
+            );
+          })}
         </div>
       </div>
 
