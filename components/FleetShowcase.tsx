@@ -118,7 +118,8 @@ export default function FleetShowcase() {
           >
         {activeTab === 'bike' && (
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            <div className="lg:col-span-6 space-y-5">
+            {/* Text Column (Order 2 on Mobile, Order 1 on Desktop) */}
+            <div className="lg:col-span-6 space-y-5 order-2 lg:order-1">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FEF9C3] text-obsidian text-xs font-black border border-yellow-300">
                 <Bike className="w-3.5 h-3.5 stroke-[2.5]" />
                 <span>#1 Commuter Traffic Buster</span>
@@ -175,12 +176,21 @@ export default function FleetShowcase() {
               </div>
             </div>
 
-            <div className="lg:col-span-6 relative">
-              <div className="rounded-3xl overflow-hidden border-2 border-stone-200 shadow-lg">
+            {/* Image Column (Order 1 on Mobile so it is visible first, Order 2 on Desktop) */}
+            <div className="lg:col-span-6 relative order-1 lg:order-2">
+              <div className="rounded-3xl overflow-hidden border-2 border-stone-200 shadow-lg bg-stone-100">
                 <img
                   src="/images/bike-taxi-showcase.jpg"
                   alt="Sputo Bike Taxi"
-                  className="w-full h-80 sm:h-96 object-cover hover:scale-105 transition-transform duration-500"
+                  loading="eager"
+                  decoding="async"
+                  onError={(e) => {
+                    const target = e.currentTarget;
+                    if (!target.src.endsWith('/bike-taxi-showcase.jpg')) {
+                      target.src = '/bike-taxi-showcase.jpg';
+                    }
+                  }}
+                  className="w-full h-64 sm:h-80 lg:h-96 object-cover hover:scale-105 transition-transform duration-500"
                 />
               </div>
             </div>
@@ -189,7 +199,8 @@ export default function FleetShowcase() {
 
         {activeTab === 'auto' && (
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            <div className="lg:col-span-6 space-y-5">
+            {/* Text Column */}
+            <div className="lg:col-span-6 space-y-5 order-2 lg:order-1">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FEF9C3] text-obsidian text-xs font-black border border-yellow-300">
                 <Car className="w-3.5 h-3.5 stroke-[2.5]" />
                 <span>Doorstep Auto With No Meter Haggling</span>
@@ -246,12 +257,15 @@ export default function FleetShowcase() {
               </div>
             </div>
 
-            <div className="lg:col-span-6 relative">
-              <div className="rounded-3xl overflow-hidden border-2 border-stone-200 shadow-lg">
+            {/* Image Column */}
+            <div className="lg:col-span-6 relative order-1 lg:order-2">
+              <div className="rounded-3xl overflow-hidden border-2 border-stone-200 shadow-lg bg-stone-100">
                 <img
                   src="/images/sputo-auto-showcase.jpg"
                   alt="Sputo Auto"
-                  className="w-full h-80 sm:h-96 object-cover hover:scale-105 transition-transform duration-500"
+                  loading="eager"
+                  decoding="async"
+                  className="w-full h-64 sm:h-80 lg:h-96 object-cover hover:scale-105 transition-transform duration-500"
                 />
               </div>
             </div>
@@ -260,7 +274,8 @@ export default function FleetShowcase() {
 
         {activeTab === 'cab' && (
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            <div className="lg:col-span-6 space-y-5">
+            {/* Text Column */}
+            <div className="lg:col-span-6 space-y-5 order-2 lg:order-1">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FEF9C3] text-obsidian text-xs font-black border border-yellow-300">
                 <Car className="w-3.5 h-3.5 stroke-[2.5]" />
                 <span>Executive AC Sedan Comfort</span>
@@ -317,12 +332,15 @@ export default function FleetShowcase() {
               </div>
             </div>
 
-            <div className="lg:col-span-6 relative">
-              <div className="rounded-3xl overflow-hidden border-2 border-stone-200 shadow-lg">
+            {/* Image Column */}
+            <div className="lg:col-span-6 relative order-1 lg:order-2">
+              <div className="rounded-3xl overflow-hidden border-2 border-stone-200 shadow-lg bg-stone-100">
                 <img
                   src="/images/sputo-cab-showcase.jpg"
                   alt="Royale Cab"
-                  className="w-full h-80 sm:h-96 object-cover hover:scale-105 transition-transform duration-500"
+                  loading="eager"
+                  decoding="async"
+                  className="w-full h-64 sm:h-80 lg:h-96 object-cover hover:scale-105 transition-transform duration-500"
                 />
               </div>
             </div>
@@ -331,7 +349,8 @@ export default function FleetShowcase() {
 
         {activeTab === 'priority' && (
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            <div className="lg:col-span-6 space-y-5">
+            {/* Text Column */}
+            <div className="lg:col-span-6 space-y-5 order-2 lg:order-1">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-100 text-obsidian text-xs font-black border border-amber-300">
                 <Zap className="w-3.5 h-3.5 fill-amber-500 stroke-obsidian" />
                 <span>Guaranteed 2-Min Pickup • Zero Driver Refusal</span>
@@ -389,7 +408,8 @@ export default function FleetShowcase() {
               </div>
             </div>
 
-            <div className="lg:col-span-6 relative">
+            {/* Visual Column */}
+            <div className="lg:col-span-6 relative order-1 lg:order-2">
               <div className="rounded-3xl overflow-hidden border-2 border-stone-200 shadow-lg bg-gradient-to-br from-stone-900 via-stone-800 to-stone-950 p-6 sm:p-8 flex flex-col items-center justify-center text-white relative">
                 <div className="absolute top-4 right-4 flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-400 text-obsidian text-xs font-black">
                   <Zap className="w-3.5 h-3.5 fill-obsidian stroke-obsidian" />
@@ -401,6 +421,7 @@ export default function FleetShowcase() {
                     <img
                       src="/images/fleet/priority-cab.png"
                       alt="Priority Cab"
+                      loading="eager"
                       className="w-full h-28 sm:h-36 object-contain group-hover:scale-105 transition-transform"
                     />
                     <p className="text-xs font-black text-white mt-2">Priority Swift Sedan</p>
@@ -410,6 +431,7 @@ export default function FleetShowcase() {
                     <img
                       src="/images/fleet/priority-suv.png"
                       alt="Priority SUV"
+                      loading="eager"
                       className="w-full h-28 sm:h-36 object-contain group-hover:scale-105 transition-transform"
                     />
                     <p className="text-xs font-black text-white mt-2">Priority 6-Seater SUV</p>
@@ -427,7 +449,8 @@ export default function FleetShowcase() {
 
         {activeTab === 'suv' && (
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            <div className="lg:col-span-6 space-y-5">
+            {/* Text Column */}
+            <div className="lg:col-span-6 space-y-5 order-2 lg:order-1">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FEF9C3] text-obsidian text-xs font-black border border-yellow-300">
                 <Car className="w-3.5 h-3.5 stroke-[2.5]" />
                 <span>6-Seater Family & Heavy Luggage Power</span>
@@ -484,12 +507,15 @@ export default function FleetShowcase() {
               </div>
             </div>
 
-            <div className="lg:col-span-6 relative">
-              <div className="rounded-3xl overflow-hidden border-2 border-stone-200 shadow-lg">
+            {/* Image Column */}
+            <div className="lg:col-span-6 relative order-1 lg:order-2">
+              <div className="rounded-3xl overflow-hidden border-2 border-stone-200 shadow-lg bg-stone-100">
                 <img
                   src="/images/sputo-suv-showcase.jpg"
                   alt="Sputo SUV"
-                  className="w-full h-80 sm:h-96 object-cover hover:scale-105 transition-transform duration-500"
+                  loading="eager"
+                  decoding="async"
+                  className="w-full h-64 sm:h-80 lg:h-96 object-cover hover:scale-105 transition-transform duration-500"
                 />
               </div>
             </div>
@@ -498,7 +524,8 @@ export default function FleetShowcase() {
 
         {activeTab === 'parcel' && (
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            <div className="lg:col-span-6 space-y-5">
+            {/* Text Column */}
+            <div className="lg:col-span-6 space-y-5 order-2 lg:order-1">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FEF9C3] text-obsidian text-xs font-black border border-yellow-300">
                 <Package className="w-3.5 h-3.5 stroke-[2.5]" />
                 <span>Hyper-Local Instant Delivery</span>
@@ -555,12 +582,15 @@ export default function FleetShowcase() {
               </div>
             </div>
 
-            <div className="lg:col-span-6 relative">
-              <div className="rounded-3xl overflow-hidden border-2 border-stone-200 shadow-lg">
+            {/* Image Column */}
+            <div className="lg:col-span-6 relative order-1 lg:order-2">
+              <div className="rounded-3xl overflow-hidden border-2 border-stone-200 shadow-lg bg-stone-100">
                 <img
                   src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80"
                   alt="Sputo Parcel"
-                  className="w-full h-80 sm:h-96 object-cover hover:scale-105 transition-transform duration-500"
+                  loading="eager"
+                  decoding="async"
+                  className="w-full h-64 sm:h-80 lg:h-96 object-cover hover:scale-105 transition-transform duration-500"
                 />
               </div>
             </div>
