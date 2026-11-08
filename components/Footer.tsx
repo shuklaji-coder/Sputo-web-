@@ -62,7 +62,7 @@ export default function Footer() {
               </li>
               <li>
                 <a href="#booking-engine" className="hover:text-white transition">
-                  Send Parcel Express
+                  Book Sputo SUV (6-Seater)
                 </a>
               </li>
               <li>

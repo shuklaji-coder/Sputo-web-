@@ -20,7 +20,6 @@ import {
   Users,
   Check,
   ChevronRight,
-  Package,
   MapPin,
   Flame,
   Zap,
@@ -100,9 +99,6 @@ function TiltHeroCard({ children }: { children: React.ReactNode }) {
 export default function HeroBooking({ onRideCreated }: HeroBookingProps) {
   const { user, openAuthModal } = useAuth();
 
-  // Mode tab: 'ride' | 'parcel'
-  const [bookingMode, setBookingMode] = useState<'ride' | 'parcel'>('ride');
-
   // Timing Mode: 'now' | 'schedule'
   const [timingMode, setTimingMode] = useState<'now' | 'schedule'>('now');
   const [scheduledDate, setScheduledDate] = useState<string>('tomorrow');
@@ -118,10 +114,6 @@ export default function HeroBooking({ onRideCreated }: HeroBookingProps) {
   const [isQuoting, setIsQuoting] = useState<boolean>(false);
   const [isBooking, setIsBooking] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-
-  // Parcel details
-  const [parcelSize, setParcelSize] = useState<'small' | 'medium' | 'large'>('small');
-  const [recipientPhone, setRecipientPhone] = useState<string>('');
 
   // Popular quick route presets for 1-tap estimation (Rapido style)
   const routePresets = [
@@ -348,44 +340,11 @@ export default function HeroBooking({ onRideCreated }: HeroBookingProps) {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Left Column: Interactive Booking Wizard (7 cols) */}
         <div className="lg:col-span-7 bg-white rounded-3xl p-4 sm:p-6 lg:p-8 shadow-rapido-card border border-stone-200 relative">
-          {/* Mode & Timing Switcher with Liquid Magnetic Spring Pills */}
+          {/* Top Controls: City Badge & Ride Timing Switcher with Liquid Magnetic Spring Pill */}
           <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-stone-100 mb-5">
-            {/* Service Type Switcher */}
-            <div className="inline-flex p-1 rounded-2xl bg-stone-100 border border-stone-200 relative">
-              <button
-                type="button"
-                onClick={() => setBookingMode('ride')}
-                className={`relative z-10 flex items-center gap-1.5 px-4 py-1.5 rounded-xl text-xs font-black transition-colors ${
-                  bookingMode === 'ride' ? 'text-obsidian' : 'text-stone-600 hover:text-obsidian'
-                }`}
-              >
-                {bookingMode === 'ride' && (
-                  <motion.div
-                    layoutId="bookingModePill"
-                    className="absolute inset-0 bg-[#F9D024] rounded-xl shadow-sm border border-yellow-400 -z-10"
-                    transition={{ type: "spring", stiffness: 500, damping: 35 }}
-                  />
-                )}
-                <Bike className="w-3.5 h-3.5 stroke-[2.5]" />
-                <span>Daily Ride</span>
-              </button>
-              <button
-                type="button"
-                onClick={() => setBookingMode('parcel')}
-                className={`relative z-10 flex items-center gap-1.5 px-4 py-1.5 rounded-xl text-xs font-black transition-colors ${
-                  bookingMode === 'parcel' ? 'text-obsidian' : 'text-stone-600 hover:text-obsidian'
-                }`}
-              >
-                {bookingMode === 'parcel' && (
-                  <motion.div
-                    layoutId="bookingModePill"
-                    className="absolute inset-0 bg-[#F9D024] rounded-xl shadow-sm border border-yellow-400 -z-10"
-                    transition={{ type: "spring", stiffness: 500, damping: 35 }}
-                  />
-                )}
-                <Package className="w-3.5 h-3.5 stroke-[2.5]" />
-                <span>Parcel</span>
-              </button>
+            <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-2xl bg-[#FEF9C3] border border-yellow-300 text-obsidian text-xs font-black">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span>Mumbai MMR City Commutes</span>
             </div>
 
             {/* Ride Now vs Schedule Later Switcher */}
@@ -466,7 +425,7 @@ export default function HeroBooking({ onRideCreated }: HeroBookingProps) {
           {/* Location Inputs with Swap Button & Quick Hubs */}
           <div className="space-y-3 relative mb-5">
             <LocationInput
-              label={bookingMode === 'parcel' ? 'Sender Pickup Point' : 'Pickup Location'}
+              label="Pickup Location"
               placeholder="Enter pickup address, office, or landmark..."
               value={pickup}
               onChange={setPickup}
@@ -486,7 +445,7 @@ export default function HeroBooking({ onRideCreated }: HeroBookingProps) {
             </div>
 
             <LocationInput
-              label={bookingMode === 'parcel' ? 'Recipient Drop Address' : 'Drop Destination'}
+              label="Drop Destination"
               placeholder="Enter destination address, metro station, or society..."
               value={drop}
               onChange={setDrop}
@@ -518,39 +477,6 @@ export default function HeroBooking({ onRideCreated }: HeroBookingProps) {
               ))}
             </div>
           </div>
-
-          {/* Parcel specific inputs if Parcel mode active */}
-          {bookingMode === 'parcel' && (
-            <div className="mb-6 p-4 rounded-2xl bg-stone-50 border border-stone-200 space-y-3">
-              <div className="flex justify-between items-center">
-                <span className="text-xs font-bold text-obsidian uppercase tracking-wider">
-                  Package Size
-                </span>
-                <span className="text-[11px] text-stone-500 font-semibold">Max 15 kg</span>
-              </div>
-              <div className="grid grid-cols-3 gap-2">
-                {[
-                  { id: 'small', label: 'Docs / Keys', weight: '< 1 kg' },
-                  { id: 'medium', label: 'Box / Food', weight: '< 5 kg' },
-                  { id: 'large', label: 'Large Bag', weight: '< 15 kg' },
-                ].map((pkg) => (
-                  <button
-                    key={pkg.id}
-                    type="button"
-                    onClick={() => setParcelSize(pkg.id as any)}
-                    className={`p-2.5 rounded-xl text-center border transition ${
-                      parcelSize === pkg.id
-                        ? 'bg-[#FEF9C3] border-[#F9D024] font-black text-obsidian'
-                        : 'bg-white border-stone-200 text-stone-600'
-                    }`}
-                  >
-                    <p className="text-xs">{pkg.label}</p>
-                    <p className="text-[10px] text-stone-500 font-semibold">{pkg.weight}</p>
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
 
           {/* Vehicle Category Selector */}
           <div className="mb-6">

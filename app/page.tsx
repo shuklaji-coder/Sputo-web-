@@ -56,7 +56,7 @@ export default function HomePage() {
       {/* Infinite Live Ticker Marquee (Rapido Yellow Strip) */}
       <LiveMarquee />
 
-      {/* Fleet Showcase: Bike Taxi, Auto, Royale Cab & Parcel */}
+      {/* Fleet Showcase: Bike Taxi, Auto, Royale Cab, Priority & SUV */}
       <FleetShowcase />
 
       {/* Why Choose Sputo, 3 Steps & Verified Patron Reviews */}

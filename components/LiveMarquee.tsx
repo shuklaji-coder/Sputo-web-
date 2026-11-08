@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import { Zap, Shield, Bike, Car, Package, Clock, CheckCircle2, Award } from 'lucide-react';
+import { Zap, Shield, Bike, Car, Clock, CheckCircle2, Award } from 'lucide-react';
 
 const MARQUEE_ITEMS = [
   { icon: Zap, text: "2-5 MIN DOORSTEP PICKUP" },
@@ -11,7 +11,7 @@ const MARQUEE_ITEMS = [
   { icon: Car, text: "DEPENDABLE SPUTO AUTO" },
   { icon: Car, text: "CHILLED AC ROYALE CABS" },
   { icon: Car, text: "SPUTO 6-SEATER SUV" },
-  { icon: Package, text: "60-MIN PARCEL EXPRESS" },
+  { icon: Zap, text: "⚡ INSTANT MMR DISPATCH" },
   { icon: CheckCircle2, text: "FREE PASSENGER INSURANCE" },
   { icon: Zap, text: "BHARAT MOVES ON SPUTO" },
 ];

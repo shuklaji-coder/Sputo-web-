@@ -2,10 +2,10 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Bike, Car, Shield, Wind, Sparkles, Check, ArrowRight, Package, Zap } from 'lucide-react';
+import { Bike, Car, Shield, Wind, Sparkles, Check, ArrowRight, Zap } from 'lucide-react';
 
 export default function FleetShowcase() {
-  const [activeTab, setActiveTab] = useState<'bike' | 'auto' | 'cab' | 'priority' | 'suv' | 'parcel'>('bike');
+  const [activeTab, setActiveTab] = useState<'bike' | 'auto' | 'cab' | 'priority' | 'suv'>('bike');
 
   return (
     <section id="fleet" className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
@@ -31,7 +31,6 @@ export default function FleetShowcase() {
             { id: 'cab' as const, label: 'Royale Cab', icon: Car },
             { id: 'priority' as const, label: '⚡ Priority', icon: Zap },
             { id: 'suv' as const, label: 'Sputo SUV', icon: Car },
-            { id: 'parcel' as const, label: 'Parcel Express', icon: Package },
           ].map((tab) => {
             const Icon = tab.icon;
             const isCurrent = activeTab === tab.id;
@@ -467,81 +466,6 @@ export default function FleetShowcase() {
                 <img
                   src="/images/sputo-suv-showcase.jpg"
                   alt="Sputo SUV"
-                  loading="eager"
-                  decoding="async"
-                  className="w-full h-64 sm:h-80 lg:h-96 object-cover hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-            </div>
-          </div>
-        )}
-
-        {activeTab === 'parcel' && (
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            {/* Text Column */}
-            <div className="lg:col-span-6 space-y-5 order-2 lg:order-1">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FEF9C3] text-obsidian text-xs font-black border border-yellow-300">
-                <Package className="w-3.5 h-3.5 stroke-[2.5]" />
-                <span>Hyper-Local Instant Delivery</span>
-              </div>
-              <h3 className="text-3xl sm:text-4xl font-black text-obsidian">
-                Sputo Parcel Express
-              </h3>
-              <p className="text-sm text-stone-600 font-medium leading-relaxed">
-                Need to send keys, chargers, lunch boxes, or business documents across town? Sputo Captains pick up from your doorstep and deliver within minutes.
-              </p>
-
-              <div className="grid grid-cols-2 gap-3 pt-2">
-                <div className="p-3.5 rounded-2xl bg-stone-50 border border-stone-200 flex items-start gap-3">
-                  <Check className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5 stroke-[3]" />
-                  <div>
-                    <p className="text-xs font-bold text-obsidian">Instant Doorstep Pickup</p>
-                    <p className="text-[11px] text-stone-500 font-semibold">Captain arrives in 5-8 mins</p>
-                  </div>
-                </div>
-                <div className="p-3.5 rounded-2xl bg-stone-50 border border-stone-200 flex items-start gap-3">
-                  <Check className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5 stroke-[3]" />
-                  <div>
-                    <p className="text-xs font-bold text-obsidian">Live Tracking Link</p>
-                    <p className="text-[11px] text-stone-500 font-semibold">Share tracking with recipient</p>
-                  </div>
-                </div>
-                <div className="p-3.5 rounded-2xl bg-stone-50 border border-stone-200 flex items-start gap-3">
-                  <Check className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5 stroke-[3]" />
-                  <div>
-                    <p className="text-xs font-bold text-obsidian">Delivery OTP Verification</p>
-                    <p className="text-[11px] text-stone-500 font-semibold">Safe handover guarantee</p>
-                  </div>
-                </div>
-                <div className="p-3.5 rounded-2xl bg-stone-50 border border-stone-200 flex items-start gap-3">
-                  <Check className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5 stroke-[3]" />
-                  <div>
-                    <p className="text-xs font-bold text-obsidian">Starts at ₹30</p>
-                    <p className="text-[11px] text-stone-500 font-semibold">Pocket friendly parcel rates</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="pt-3 flex items-center gap-4">
-                <a
-                  href="#booking-engine"
-                  className="px-6 py-3.5 rounded-2xl bg-[#F9D024] hover:bg-[#EAB308] text-obsidian font-black text-xs uppercase tracking-wider shadow-rapido border border-yellow-400 flex items-center gap-2"
-                >
-                  <span>Send Parcel Now</span>
-                  <ArrowRight className="w-4 h-4 stroke-[3]" />
-                </a>
-                <span className="text-xs font-black text-obsidian">
-                  Max 15 kg • Same-Day Express
-                </span>
-              </div>
-            </div>
-
-            {/* Image Column */}
-            <div className="lg:col-span-6 relative order-1 lg:order-2">
-              <div className="rounded-3xl overflow-hidden border-2 border-stone-200 shadow-lg bg-stone-100">
-                <img
-                  src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80"
-                  alt="Sputo Parcel"
                   loading="eager"
                   decoding="async"
                   className="w-full h-64 sm:h-80 lg:h-96 object-cover hover:scale-105 transition-transform duration-500"

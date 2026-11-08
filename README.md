@@ -74,7 +74,7 @@ export const functions = getFunctions(app, 'asia-south1');
 
 ## ⚡ 4. Rapido-Inspired 20-Year UI/UX Additions
 - **Coverage**: Mumbai MMR Exclusive Live Launch (Island City, Western & Central Suburbs, Thane & Navi Mumbai).
-- **Service Pillars**: Sputo Bike Taxi, Sputo Auto, Sputo Royale Cab, and Sputo Parcel Express.
+- **Service Pillars**: Sputo Bike Taxi, Sputo Auto, Sputo Royale Cab, and Sputo SUV.
 - **Interactive Captain Earnings Calculator**: Interactive slider (4 to 12 hrs/day) dynamically calculating daily & monthly potential revenue with instant 60s application modal.
 - **Sputo for Business (Corporate Mobility)**: Centralized monthly GST invoices, postpaid credit lines, and team expense management.
 - **Interactive FAQ Accordion**: Addresses passenger and captain questions.
