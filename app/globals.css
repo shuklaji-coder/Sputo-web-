@@ -10,11 +10,13 @@
   --obsidian-dark: #111827;
 }
 
-body {
+html, body {
   background-color: #FAFAFA;
   color: #111827;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   overflow-x: hidden;
+  max-width: 100vw;
+  -webkit-text-size-adjust: 100%;
 }
 
 /* Rapido-Style Crisp White Cards with Yellow Glow */

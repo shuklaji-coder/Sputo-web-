@@ -90,7 +90,7 @@ export default function CorporateBanner() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="work.email@company.com"
-                  className="w-full px-4 py-2.5 rounded-xl bg-white text-obsidian text-xs font-bold outline-none placeholder:text-stone-400"
+                  className="w-full px-4 py-2.5 rounded-xl bg-white text-obsidian text-base sm:text-xs font-bold outline-none placeholder:text-stone-400"
                 />
                 <button
                   type="submit"

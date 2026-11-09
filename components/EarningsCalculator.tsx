@@ -96,7 +96,7 @@ export default function EarningsCalculator({ onOpenCaptainModal }: EarningsCalcu
             </div>
 
             {/* Quick Guarantees */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3 pt-2">
               <div className="flex items-center gap-2 text-xs font-bold text-stone-700">
                 <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0 stroke-[2.5]" />
                 <span>₹5 Lakh Accidental Cover</span>
@@ -117,7 +117,7 @@ export default function EarningsCalculator({ onOpenCaptainModal }: EarningsCalcu
             <motion.div
               whileHover={{ y: -6, scale: 1.015 }}
               transition={{ duration: 0.2 }}
-              className="p-8 rounded-3xl bg-stone-900 text-white border-2 border-stone-800 shadow-rapido-card text-center relative overflow-hidden"
+              className="p-5 sm:p-8 rounded-3xl bg-stone-900 text-white border-2 border-stone-800 shadow-rapido-card text-center relative overflow-hidden"
             >
               <div className="w-14 h-14 rounded-2xl bg-[#F9D024] text-obsidian flex items-center justify-center mx-auto mb-4 font-black shadow-rapido">
                 <DollarSign className="w-7 h-7 stroke-[2.5]" />

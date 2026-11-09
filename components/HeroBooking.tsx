@@ -238,12 +238,12 @@ export default function HeroBooking({ onRideCreated }: HeroBookingProps) {
   const currentOption = quote?.vehicles.find((v) => v.category === selectedVehicle);
 
   return (
-    <section id="booking-engine" className="relative pt-6 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <section id="booking-engine" className="relative pt-6 pb-16 px-3.5 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden">
       {/* Background Rapido Yellow ambient glow */}
-      <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[750px] h-[360px] bg-gradient-to-r from-yellow-200/40 via-yellow-100/30 to-yellow-200/40 blur-3xl pointer-events-none -z-10" />
+      <div className="absolute top-10 left-1/2 -translate-x-1/2 w-full max-w-[750px] h-[360px] bg-gradient-to-r from-yellow-200/40 via-yellow-100/30 to-yellow-200/40 blur-3xl pointer-events-none -z-10" />
 
       {/* Hero Header: 2 Columns (Headline on Left, Sputo Fleet Image on Right) */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mb-12">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mb-10 sm:mb-12">
         {/* Left Column: Headline & Value Prop (6 cols) */}
         <motion.div
           initial={{ opacity: 0, y: 25 }}
@@ -251,8 +251,8 @@ export default function HeroBooking({ onRideCreated }: HeroBookingProps) {
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="lg:col-span-6 space-y-4 text-left"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FEF9C3] border border-yellow-300 text-obsidian text-xs font-black uppercase tracking-wider shadow-sm hover:scale-105 transition-transform cursor-default">
-            <Zap className="w-4 h-4 text-stone-900 fill-[#F9D024]" />
+          <div className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-full bg-[#FEF9C3] border border-yellow-300 text-obsidian text-[11px] sm:text-xs font-black uppercase tracking-wider shadow-sm hover:scale-105 transition-transform cursor-default">
+            <Zap className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-stone-900 fill-[#F9D024]" />
             <span>Bharat Moves on Sputo • Lowest Fares Guaranteed</span>
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
@@ -260,7 +260,7 @@ export default function HeroBooking({ onRideCreated }: HeroBookingProps) {
             </span>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-obsidian tracking-tight leading-[1.12]">
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-obsidian tracking-tight leading-[1.14]">
             Traffic Ka Chakkar Chhodo, <br className="hidden sm:inline" />
             <span className="text-obsidian underline decoration-[#F9D024] decoration-8 underline-offset-4">
               Sputo Pakdo.
@@ -492,7 +492,7 @@ export default function HeroBooking({ onRideCreated }: HeroBookingProps) {
               )}
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-2.5">
+            <div className="flex sm:grid sm:grid-cols-3 lg:grid-cols-5 overflow-x-auto no-scrollbar gap-2 sm:gap-2.5 pb-2 -mx-1 px-1">
               {quote ? (
                 quote.vehicles.map((veh, idx) => {
                   const isSelected = selectedVehicle === veh.category;
@@ -505,11 +505,11 @@ export default function HeroBooking({ onRideCreated }: HeroBookingProps) {
                       whileHover={{ scale: 1.03, y: -4 }}
                       whileTap={{ scale: 0.98 }}
                       onClick={() => setSelectedVehicle(veh.category)}
-                      className={`cursor-pointer rounded-2xl p-2.5 sm:p-3.5 transition-all duration-200 border relative flex flex-col justify-between group ${
+                      className={`cursor-pointer rounded-2xl p-2.5 sm:p-3.5 transition-all duration-200 border relative flex flex-col justify-between group shrink-0 w-[145px] sm:w-auto ${
                         isSelected
                           ? 'bg-[#FFFBEB] border-2 border-[#F9D024] shadow-rapido ring-4 ring-yellow-400/25'
                           : 'bg-white hover:bg-stone-50 border-stone-200 hover:border-yellow-200 shadow-sm'
-                      } ${idx === 4 ? 'col-span-2 sm:col-span-1' : ''}`}
+                      }`}
                     >
                       {/* Priority Tag for Fastest Booking with subtle bounce */}
                       {veh.category === 'Priority Cab' && (
@@ -623,7 +623,7 @@ export default function HeroBooking({ onRideCreated }: HeroBookingProps) {
                 [1, 2, 3, 4, 5].map((i) => (
                   <div
                     key={i}
-                    className="h-36 rounded-2xl bg-stone-100 animate-pulse border border-stone-200"
+                    className="h-36 w-[145px] sm:w-auto shrink-0 rounded-2xl bg-stone-100 animate-pulse border border-stone-200"
                   />
                 ))
               )}
@@ -756,7 +756,7 @@ export default function HeroBooking({ onRideCreated }: HeroBookingProps) {
             </div>
 
             {/* Google Map Viewport with Live Radar Dispatch HUD */}
-            <div className="w-full h-[400px] sm:h-[470px] rounded-2xl overflow-hidden border border-stone-200 relative">
+            <div className="w-full h-[290px] sm:h-[400px] lg:h-[470px] rounded-2xl overflow-hidden border border-stone-200 relative">
               {/* Radar Dispatch HUD Overlay */}
               <div className="absolute top-3 left-3 z-10 pointer-events-none flex items-center gap-2 px-3 py-1.5 rounded-full bg-stone-900/90 backdrop-blur-md border border-stone-700/80 text-white shadow-xl text-[11px] font-bold">
                 <span className="relative flex h-2 w-2">

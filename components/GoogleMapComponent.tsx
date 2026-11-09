@@ -225,7 +225,7 @@ export default function GoogleMapComponent({
         styles: RAPIDO_MAP_STYLES,
         disableDefaultUI: true,
         zoomControl: true,
-        gestureHandling: 'greedy',
+        gestureHandling: 'cooperative',
       });
 
       // Signature Dual Stroke Directions Line

@@ -26,7 +26,7 @@ export default function WhatsAppFloat() {
           href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-2.5 px-4 py-3 sm:px-5 sm:py-3.5 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white shadow-xl transition-all border-2 border-white/30"
+          className="flex items-center gap-2.5 p-3 sm:px-5 sm:py-3.5 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white shadow-xl transition-all border-2 border-white/30"
           aria-label="Book Ride on WhatsApp"
         >
           {/* Animated WhatsApp Icon */}
@@ -51,10 +51,6 @@ export default function WhatsAppFloat() {
               +91 80877 47774
             </p>
           </div>
-
-          <span className="sm:hidden text-xs font-black text-white">
-            Book on WhatsApp
-          </span>
         </a>
 
         {/* Close button for user control */}

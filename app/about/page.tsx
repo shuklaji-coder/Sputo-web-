@@ -114,10 +114,10 @@ export default function AboutPage() {
       </header>
 
       {/* RICH DYNAMIC HERO SECTION (Filled with animated cards, glowing gradients & live telemetries) */}
-      <section className="relative pt-12 pb-20 lg:pt-20 lg:pb-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <section className="relative pt-12 pb-20 lg:pt-20 lg:pb-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden">
         {/* Ambient Glow Orbs */}
-        <div className="absolute top-10 left-1/4 w-96 h-96 bg-[#F9D024]/20 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse" />
-        <div className="absolute top-28 right-10 w-80 h-80 bg-amber-200/25 rounded-full blur-3xl pointer-events-none -z-10" />
+        <div className="absolute top-10 left-1/4 w-72 sm:w-96 h-72 sm:h-96 bg-[#F9D024]/20 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse" />
+        <div className="absolute top-28 right-10 w-64 sm:w-80 h-64 sm:h-80 bg-amber-200/25 rounded-full blur-3xl pointer-events-none -z-10" />
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           {/* Left Column: Vision & Action */}
@@ -284,9 +284,9 @@ export default function AboutPage() {
               <motion.div
                 variants={floatUp}
                 animate="animate"
-                className="absolute -top-4 -left-2 sm:-top-6 sm:-left-8 bg-white/95 backdrop-blur-md p-2.5 sm:p-3.5 rounded-2xl border border-stone-200 shadow-xl flex items-center gap-2.5 sm:gap-3 z-20"
+                className="absolute -top-3 left-1 sm:-top-6 sm:-left-8 bg-white/95 backdrop-blur-md p-2 sm:p-3.5 rounded-2xl border border-stone-200 shadow-xl flex items-center gap-2 sm:gap-3 z-20"
               >
-                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-emerald-500 text-white flex items-center justify-center shadow-sm shrink-0">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-emerald-500 text-white flex items-center justify-center shadow-sm shrink-0">
                   <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5 stroke-[2.5]" />
                 </div>
                 <div>
@@ -299,9 +299,9 @@ export default function AboutPage() {
               <motion.div
                 variants={floatDown}
                 animate="animate"
-                className="absolute -bottom-4 -right-2 sm:-bottom-6 sm:-right-8 bg-white/95 backdrop-blur-md p-2.5 sm:p-3.5 rounded-2xl border border-stone-200 shadow-xl flex items-center gap-2.5 sm:gap-3 z-20"
+                className="absolute -bottom-3 right-1 sm:-bottom-6 sm:-right-8 bg-white/95 backdrop-blur-md p-2 sm:p-3.5 rounded-2xl border border-stone-200 shadow-xl flex items-center gap-2 sm:gap-3 z-20"
               >
-                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#F9D024] text-obsidian flex items-center justify-center shadow-sm font-black shrink-0">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-[#F9D024] text-obsidian flex items-center justify-center shadow-sm font-black shrink-0">
                   <Star className="w-4 h-4 sm:w-5 sm:h-5 fill-obsidian stroke-[2.5]" />
                 </div>
                 <div>

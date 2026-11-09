@@ -35,8 +35,8 @@ export default function SafetyModal({ isOpen, onClose }: SafetyModalProps) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-obsidian/75 backdrop-blur-md overflow-y-auto">
-      <div className="relative w-full max-w-2xl bg-white rounded-3xl border border-stone-200 shadow-2xl p-6 sm:p-8 my-auto overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-obsidian/75 backdrop-blur-md overflow-y-auto">
+      <div className="relative w-full max-w-2xl bg-white rounded-3xl border border-stone-200 shadow-2xl p-5 sm:p-8 my-auto max-h-[92vh] overflow-y-auto">
         {/* Close Button */}
         <button
           onClick={onClose}

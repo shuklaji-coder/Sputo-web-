@@ -67,8 +67,8 @@ export default function AuthModal() {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-obsidian/75 backdrop-blur-md">
-      <div className="relative w-full max-w-md bg-white rounded-3xl border border-stone-200 shadow-2xl p-6 sm:p-8 overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-obsidian/75 backdrop-blur-md overflow-y-auto">
+      <div className="relative w-full max-w-md bg-white rounded-3xl border border-stone-200 shadow-2xl p-5 sm:p-8 my-auto max-h-[92vh] overflow-y-auto">
         {/* Invisible Recaptcha Container */}
         <div id="recaptcha-container" />
 
@@ -115,7 +115,7 @@ export default function AuthModal() {
                   value={phone}
                   onChange={(e) => setPhone(e.target.value.replace(/\D/g, '').slice(0, 10))}
                   placeholder="98200 12345"
-                  className="w-full text-sm font-bold text-obsidian bg-transparent outline-none placeholder:text-stone-400"
+                  className="w-full text-base sm:text-sm font-bold text-obsidian bg-transparent outline-none placeholder:text-stone-400"
                   autoFocus
                 />
               </div>

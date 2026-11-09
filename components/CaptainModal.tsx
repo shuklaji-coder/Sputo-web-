@@ -63,8 +63,8 @@ export default function CaptainModal({ isOpen, onClose }: CaptainModalProps) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-obsidian/75 backdrop-blur-md overflow-y-auto">
-      <div className="relative w-full max-w-xl bg-white rounded-3xl border border-stone-200 shadow-2xl p-6 sm:p-8 my-auto overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-obsidian/75 backdrop-blur-md overflow-y-auto">
+      <div className="relative w-full max-w-xl bg-white rounded-3xl border border-stone-200 shadow-2xl p-5 sm:p-8 my-auto max-h-[92vh] overflow-y-auto">
         {/* Close Button */}
         <button
           onClick={onClose}
@@ -146,7 +146,7 @@ export default function CaptainModal({ isOpen, onClose }: CaptainModalProps) {
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
                     placeholder="e.g. Ramesh Kumar"
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 text-xs font-bold text-obsidian focus:ring-2 focus:ring-yellow-400 outline-none"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 text-base sm:text-xs font-bold text-obsidian focus:ring-2 focus:ring-yellow-400 outline-none"
                   />
                 </div>
 
@@ -160,7 +160,7 @@ export default function CaptainModal({ isOpen, onClose }: CaptainModalProps) {
                     value={phone}
                     onChange={(e) => setPhone(e.target.value.replace(/\D/g, '').slice(0, 10))}
                     placeholder="10-digit number"
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 text-xs font-bold text-obsidian focus:ring-2 focus:ring-yellow-400 outline-none"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 text-base sm:text-xs font-bold text-obsidian focus:ring-2 focus:ring-yellow-400 outline-none"
                   />
                 </div>
               </div>
@@ -173,7 +173,7 @@ export default function CaptainModal({ isOpen, onClose }: CaptainModalProps) {
                   <select
                     value={city}
                     onChange={(e) => setCity(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 text-xs font-bold text-obsidian focus:ring-2 focus:ring-yellow-400 outline-none bg-white"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 text-base sm:text-xs font-bold text-obsidian focus:ring-2 focus:ring-yellow-400 outline-none bg-white"
                   >
                     <option value="Mumbai MMR (All Zones)">Mumbai MMR (All Zones)</option>
                     <option value="Mumbai (Island City & Suburbs)">Mumbai (Island City & Suburbs)</option>
@@ -190,7 +190,7 @@ export default function CaptainModal({ isOpen, onClose }: CaptainModalProps) {
                   <select
                     value={vehicleType}
                     onChange={(e) => setVehicleType(e.target.value as VehicleCategory)}
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 text-xs font-bold text-obsidian focus:ring-2 focus:ring-yellow-400 outline-none bg-white"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 text-base sm:text-xs font-bold text-obsidian focus:ring-2 focus:ring-yellow-400 outline-none bg-white"
                   >
                     <option value="Bike">Bike Taxi (Two-Wheeler)</option>
                     <option value="Auto">Auto Rickshaw (Three-Wheeler)</option>
@@ -212,7 +212,7 @@ export default function CaptainModal({ isOpen, onClose }: CaptainModalProps) {
                     value={licenseNumber}
                     onChange={(e) => setLicenseNumber(e.target.value.toUpperCase())}
                     placeholder="e.g. MH0220200012345"
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 text-xs font-bold text-obsidian focus:ring-2 focus:ring-yellow-400 outline-none uppercase font-mono"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 text-base sm:text-xs font-bold text-obsidian focus:ring-2 focus:ring-yellow-400 outline-none uppercase font-mono"
                   />
                 </div>
 
@@ -226,7 +226,7 @@ export default function CaptainModal({ isOpen, onClose }: CaptainModalProps) {
                     value={vehicleNumber}
                     onChange={(e) => setVehicleNumber(e.target.value.toUpperCase())}
                     placeholder="e.g. MH 02 CD 9999"
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 text-xs font-bold text-obsidian focus:ring-2 focus:ring-yellow-400 outline-none uppercase font-mono"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 text-base sm:text-xs font-bold text-obsidian focus:ring-2 focus:ring-yellow-400 outline-none uppercase font-mono"
                   />
                 </div>
               </div>

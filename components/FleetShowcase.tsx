@@ -84,7 +84,7 @@ export default function FleetShowcase() {
                 Beat the bumper-to-bumper city jams with the quickest solo ride. Our verified Captains carry sanitized helmets and hairnets for your daily safety and hygiene.
               </p>
 
-              <div className="grid grid-cols-2 gap-3 pt-2">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 pt-2">
                 <div className="p-3.5 rounded-2xl bg-stone-50 border border-stone-200 flex items-start gap-3">
                   <Check className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5 stroke-[3]" />
                   <div>
@@ -115,15 +115,15 @@ export default function FleetShowcase() {
                 </div>
               </div>
 
-              <div className="pt-3 flex items-center gap-4">
+              <div className="pt-3 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
                 <a
                   href="#booking-engine"
-                  className="px-6 py-3.5 rounded-2xl bg-[#F9D024] hover:bg-[#EAB308] text-obsidian font-black text-xs uppercase tracking-wider shadow-rapido border border-yellow-400 flex items-center gap-2"
+                  className="w-full sm:w-auto px-6 py-3.5 rounded-2xl bg-[#F9D024] hover:bg-[#EAB308] text-obsidian font-black text-xs uppercase tracking-wider shadow-rapido border border-yellow-400 flex items-center justify-center gap-2 text-center"
                 >
                   <span>Book Bike Taxi Now</span>
                   <ArrowRight className="w-4 h-4 stroke-[3]" />
                 </a>
-                <span className="text-xs font-black text-obsidian">
+                <span className="text-xs font-black text-obsidian text-center sm:text-left">
                   From ₹9.5/km • Zero Surge
                 </span>
               </div>
@@ -165,7 +165,7 @@ export default function FleetShowcase() {
                 Enjoy transparent meter rates without roadside rejections or arguments. Clean auto-rickshaws with guaranteed digital UPI billing and doorstep pickup.
               </p>
 
-              <div className="grid grid-cols-2 gap-3 pt-2">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 pt-2">
                 <div className="p-3.5 rounded-2xl bg-stone-50 border border-stone-200 flex items-start gap-3">
                   <Check className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5 stroke-[3]" />
                   <div>
@@ -196,15 +196,15 @@ export default function FleetShowcase() {
                 </div>
               </div>
 
-              <div className="pt-3 flex items-center gap-4">
+              <div className="pt-3 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
                 <a
                   href="#booking-engine"
-                  className="px-6 py-3.5 rounded-2xl bg-[#F9D024] hover:bg-[#EAB308] text-obsidian font-black text-xs uppercase tracking-wider shadow-rapido border border-yellow-400 flex items-center gap-2"
+                  className="w-full sm:w-auto px-6 py-3.5 rounded-2xl bg-[#F9D024] hover:bg-[#EAB308] text-obsidian font-black text-xs uppercase tracking-wider shadow-rapido border border-yellow-400 flex items-center justify-center gap-2 text-center"
                 >
                   <span>Book Sputo Auto</span>
                   <ArrowRight className="w-4 h-4 stroke-[3]" />
                 </a>
-                <span className="text-xs font-black text-obsidian">
+                <span className="text-xs font-black text-obsidian text-center sm:text-left">
                   From ₹14/km • Dependable Meter Rate
                 </span>
               </div>
@@ -240,7 +240,7 @@ export default function FleetShowcase() {
                 Whisper-quiet sedans and spacious hatchbacks with guaranteed chilled climate control, courteous 4.9★ Captains, and spacious boots for airport suitcases.
               </p>
 
-              <div className="grid grid-cols-2 gap-3 pt-2">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 pt-2">
                 <div className="p-3.5 rounded-2xl bg-stone-50 border border-stone-200 flex items-start gap-3">
                   <Wind className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
                   <div>
@@ -271,15 +271,15 @@ export default function FleetShowcase() {
                 </div>
               </div>
 
-              <div className="pt-3 flex items-center gap-4">
+              <div className="pt-3 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
                 <a
                   href="#booking-engine"
-                  className="px-6 py-3.5 rounded-2xl bg-[#F9D024] hover:bg-[#EAB308] text-obsidian font-black text-xs uppercase tracking-wider shadow-rapido border border-yellow-400 flex items-center gap-2"
+                  className="w-full sm:w-auto px-6 py-3.5 rounded-2xl bg-[#F9D024] hover:bg-[#EAB308] text-obsidian font-black text-xs uppercase tracking-wider shadow-rapido border border-yellow-400 flex items-center justify-center gap-2 text-center"
                 >
                   <span>Book Royale Cab Now</span>
                   <ArrowRight className="w-4 h-4 stroke-[3]" />
                 </a>
-                <span className="text-xs font-black text-obsidian">
+                <span className="text-xs font-black text-obsidian text-center sm:text-left">
                   From ₹21/km • AC Included
                 </span>
               </div>
@@ -315,7 +315,7 @@ export default function FleetShowcase() {
                 In a rush for an airport flight, railway departure, or urgent meeting? Sputo Priority locks the closest 4.9★ Captain with lightning radar dispatch and zero driver cancellation.
               </p>
 
-              <div className="grid grid-cols-2 gap-3 pt-2">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 pt-2">
                 <div className="p-3.5 rounded-2xl bg-stone-50 border border-stone-200 flex items-start gap-3">
                   <Zap className="w-5 h-5 text-amber-500 fill-amber-500 shrink-0 mt-0.5" />
                   <div>
@@ -346,16 +346,16 @@ export default function FleetShowcase() {
                 </div>
               </div>
 
-              <div className="pt-3 flex items-center gap-4">
+              <div className="pt-3 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
                 <a
                   href="#booking-engine"
-                  className="px-6 py-3.5 rounded-2xl bg-amber-400 hover:bg-amber-500 text-obsidian font-black text-xs uppercase tracking-wider shadow-rapido border border-amber-500 flex items-center gap-2"
+                  className="w-full sm:w-auto px-6 py-3.5 rounded-2xl bg-amber-400 hover:bg-amber-500 text-obsidian font-black text-xs uppercase tracking-wider shadow-rapido border border-amber-500 flex items-center justify-center gap-2 text-center"
                 >
                   <Zap className="w-4 h-4 fill-obsidian stroke-obsidian" />
                   <span>Book Priority Ride Now</span>
                   <ArrowRight className="w-4 h-4 stroke-[3]" />
                 </a>
-                <span className="text-xs font-black text-obsidian">
+                <span className="text-xs font-black text-obsidian text-center sm:text-left">
                   From ₹24/km • Guaranteed Fastest
                 </span>
               </div>
@@ -415,7 +415,7 @@ export default function FleetShowcase() {
                 Traveling with family, colleagues, or oversized luggage? Book premium 6-seater Innova Crysta, Maruti Ertiga, or Kia Carens with dual climate AC and top-tier senior Captains.
               </p>
 
-              <div className="grid grid-cols-2 gap-3 pt-2">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 pt-2">
                 <div className="p-3.5 rounded-2xl bg-stone-50 border border-stone-200 flex items-start gap-3">
                   <Check className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5 stroke-[3]" />
                   <div>
@@ -446,15 +446,15 @@ export default function FleetShowcase() {
                 </div>
               </div>
 
-              <div className="pt-3 flex items-center gap-4">
+              <div className="pt-3 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
                 <a
                   href="#booking-engine"
-                  className="px-6 py-3.5 rounded-2xl bg-[#F9D024] hover:bg-[#EAB308] text-obsidian font-black text-xs uppercase tracking-wider shadow-rapido border border-yellow-400 flex items-center gap-2"
+                  className="w-full sm:w-auto px-6 py-3.5 rounded-2xl bg-[#F9D024] hover:bg-[#EAB308] text-obsidian font-black text-xs uppercase tracking-wider shadow-rapido border border-yellow-400 flex items-center justify-center gap-2 text-center"
                 >
                   <span>Book Sputo SUV Now</span>
                   <ArrowRight className="w-4 h-4 stroke-[3]" />
                 </a>
-                <span className="text-xs font-black text-obsidian">
+                <span className="text-xs font-black text-obsidian text-center sm:text-left">
                   From ₹28.5/km • Guaranteed 6-Seater
                 </span>
               </div>

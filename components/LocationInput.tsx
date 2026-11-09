@@ -350,7 +350,7 @@ export default function LocationInput({
           }}
           placeholder={placeholder}
           disabled={disabled}
-          className="w-full py-3.5 pr-10 text-sm font-bold text-obsidian placeholder:text-stone-400 bg-transparent outline-none"
+          className="w-full py-3.5 pr-10 text-base sm:text-sm font-bold text-obsidian placeholder:text-stone-400 bg-transparent outline-none"
         />
 
         {isLoading ? (
